@@ -1,5 +1,8 @@
 {
   "name": "stowlink",
-  "pages_build_output_dir": "./dist",
-  "compatibility_date": "2026-08-18"
+  "compatibility_date": "2026-08-18",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
 }
