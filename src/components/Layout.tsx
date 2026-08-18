@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { buyProps, site } from "../site";
+import { buyProps, money, site } from "../site";
 
 const nav = [
   ["/", "Product"],
@@ -24,7 +24,7 @@ export default function Layout() {
           ))}
         </nav>
         <a className="button primary" {...buyProps}>
-          Buy {site.price}
+          Buy {money(site.oneTimePrice)}
         </a>
       </header>
       <main>

@@ -1,4 +1,4 @@
-import { buyProps, site } from "../site";
+import { buyProps, money, site } from "../site";
 
 const features = [
   ["Paste and file", "Save a link with ⌘V, or hold ⌘ and double-tap Shift from another app."],
@@ -20,13 +20,16 @@ export default function Home() {
           </p>
           <div className="actions">
             <a className="button primary" {...buyProps}>
-              Buy {site.name} · {site.price}
+              Buy {site.name} · {money(site.oneTimePrice)}
             </a>
             <a className="button" href="/download">
               Download for macOS
             </a>
           </div>
-          <p className="fine">One-time purchase. Two Macs. macOS 14 or later.</p>
+          <p className="fine">
+            One-time {money(site.oneTimePrice)}, or {money(site.yearlyPrice)} / year. Two Macs.
+            macOS 14 or later.
+          </p>
         </div>
         <div className="app-frame" aria-hidden="true">
           <div className="app-chrome">

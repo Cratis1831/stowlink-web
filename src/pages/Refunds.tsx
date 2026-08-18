@@ -6,7 +6,7 @@ export default function Refunds() {
       <h1>Refund policy</h1>
       <p>Last updated August 18, 2026.</p>
       <p>
-        {site.name} is a one-time macOS purchase. If the app does not launch on a supported Mac,
+        {site.name} is a paid macOS license. If the app does not launch on a supported Mac,
         or a defect blocks licensed use, email{" "}
         <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a> within 14 days of purchase
         with the order email. We will refund through Lemon Squeezy after we look at the report.
