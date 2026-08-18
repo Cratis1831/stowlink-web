@@ -1,6 +1,6 @@
 # StowLink website
 
-Static Vite + React site for https://www.stowlink.app. Chosen over Next.js so Netlify Free stays on a static `dist` publish, with no server functions and no app binaries on Netlify.
+Static Vite + React site for https://www.stowlink.app. Cloudflare Pages serves the generated `dist` directory with no server functions or app binaries.
 
 ## Local
 
@@ -10,14 +10,16 @@ npm install
 npm run dev
 ```
 
-## Netlify
+## Cloudflare Pages
 
 - Build command: `npm run build`
-- Publish directory: `dist`
+- Build output directory: `dist`
 - Production branch: `main`
 - Production `VITE_LEMONSQUEEZY_CHECKOUT_URL` must be the **Live** checkout
 - Preview deploys should use the **Test** checkout
-- Custom domains: `www.stowlink.app` and `stowlink.app`, HTTPS forced
+- Custom domains: `www.stowlink.app` and `stowlink.app`
+
+The Pages project configuration is stored in `wrangler.jsonc`. Security headers are stored in `public/_headers` and copied into `dist` during the build.
 
 Downloads are always:
 

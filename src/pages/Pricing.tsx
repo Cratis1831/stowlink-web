@@ -1,14 +1,22 @@
-import { buyProps, money, site } from "../site";
+import { Check } from "lucide-react";
+import { buyProps, site } from "../site";
+
+const includedFeatures = [
+  "Save links with a global keyboard shortcut",
+  "Organize with nested folders",
+  "Search by title, URL, domain, or folder",
+  "See rich previews with images and video",
+  "Add formatted notes to any link",
+  "Store locally or sync with iCloud",
+];
 
 export default function Pricing() {
   return (
-    <section className="narrow">
+    <section className="narrow pricing-page">
       <p className="eyebrow">Simple on purpose</p>
-      <h1>One purchase. One Mac.</h1>
+      <h1>One purchase. Two Macs.</h1>
       <p className="lede">
-        Prices are in US dollars ({site.currency}). StowLink is a one-time license. You get the
-        current app, subsequent Sparkle updates, and email support. Lemon Squeezy handles
-        checkout, tax, and the receipt.
+        StowLink is a one-time license for up to two Macs. No subscription.
       </p>
 
       <article className="price-card featured">
@@ -20,15 +28,22 @@ export default function Pricing() {
           ${site.price}
           <span> {site.currency}</span>
         </p>
-        <ul>
-          <li>Perpetual license, no subscription</li>
-          <li>Activate on one Mac at a time</li>
-          <li>Notarized download and signed in-app updates</li>
-          <li>Optional iCloud sync, local storage by default</li>
-          <li>Email support from {site.supportEmail}</li>
-        </ul>
+        <div className="pricing-features">
+          <div className="pricing-features-heading">
+            <h3>Features</h3>
+            <span aria-hidden="true" />
+          </div>
+          <ul>
+            {includedFeatures.map((feature) => (
+              <li key={feature}>
+                <Check aria-hidden="true" />
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
         <a className="button primary" {...buyProps}>
-          Buy {money()}
+          Purchase
         </a>
       </article>
     </section>

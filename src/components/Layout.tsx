@@ -1,45 +1,75 @@
-import { NavLink, Outlet } from "react-router-dom";
-import { buyProps, money, site } from "../site";
+import { ArrowUpRight } from "lucide-react";
+import { useEffect } from "react";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { buttonVariants } from "@/components/ui/button";
+import { site } from "../site";
 
 const nav = [
-  ["/", "Product"],
   ["/pricing", "Pricing"],
-  ["/download", "Download"],
   ["/support", "Support"],
 ] as const;
 
 export default function Layout() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      if (hash) {
+        document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [pathname, hash]);
+
   return (
-    <div className="shell">
-      <header className="topbar">
-        <NavLink to="/" className="brand">
-          <img src="/app-icon.png" width="28" height="28" alt="" />
-          <span>{site.name}</span>
-        </NavLink>
-        <nav>
-          {nav.map(([to, label]) => (
-            <NavLink key={to} to={to} end={to === "/"}>
-              {label}
+    <div className="site-shell">
+      <header className="site-header">
+        <div className="header-inner">
+          <NavLink to="/" className="brand" aria-label={`${site.name} home`}>
+            <img src="/app-icon.png" width="34" height="34" alt="" />
+            <span>{site.name}</span>
+          </NavLink>
+          <nav className="primary-nav" aria-label="Main navigation">
+            <NavLink to="/" end>
+              Product
             </NavLink>
-          ))}
-        </nav>
-        <a className="button primary" {...buyProps}>
-          Buy {money()}
-        </a>
+            <a href="/#features">Features</a>
+            {nav.map(([to, label]) => (
+              <NavLink key={to} to={to}>
+                {label}
+              </NavLink>
+            ))}
+          </nav>
+          <NavLink to="/pricing" className={buttonVariants({ className: "header-buy" })}>
+            Get Started
+            <ArrowUpRight data-icon="inline-end" aria-hidden="true" />
+          </NavLink>
+        </div>
       </header>
       <main>
         <Outlet />
       </main>
-      <footer>
-        <p>
-          {site.name} is a native macOS app. Payments are handled by Lemon Squeezy as merchant of record.
-        </p>
-        <nav>
-          <NavLink to="/privacy">Privacy</NavLink>
-          <NavLink to="/terms">Terms</NavLink>
-          <NavLink to="/refunds">Refunds</NavLink>
-          <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>
-        </nav>
+      <footer className="site-footer">
+        <div className="footer-inner">
+          <div className="footer-brand">
+            <img src="/app-icon.png" width="30" height="30" alt="" />
+            <div>
+              <strong>{site.name}</strong>
+              <span>{site.motto}</span>
+            </div>
+          </div>
+          <nav aria-label="Legal and support links">
+            <NavLink to="/privacy">Privacy</NavLink>
+            <NavLink to="/terms">Terms</NavLink>
+            <NavLink to="/refunds">Refunds</NavLink>
+            <a href={`mailto:${site.supportEmail}`}>Contact</a>
+          </nav>
+          <p>Built for macOS.</p>
+        </div>
       </footer>
     </div>
   );

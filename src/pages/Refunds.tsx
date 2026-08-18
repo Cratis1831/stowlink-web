@@ -1,8 +1,10 @@
+import LegalBackLink from "@/components/LegalBackLink";
 import { site } from "../site";
 
 export default function Refunds() {
   return (
-    <article className="prose">
+    <article className="prose refund-policy">
+      <LegalBackLink />
       <h1>Refund policy</h1>
       <p>Last updated August 18, 2026.</p>
       <p>

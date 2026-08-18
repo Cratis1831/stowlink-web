@@ -1,8 +1,10 @@
+import LegalBackLink from "@/components/LegalBackLink";
 import { site } from "../site";
 
 export default function Privacy() {
   return (
     <article className="prose">
+      <LegalBackLink />
       <h1>Privacy policy</h1>
       <p>Last updated August 18, 2026.</p>
       <p>
@@ -35,7 +37,7 @@ export default function Privacy() {
       <h2>This website</h2>
       <p>
         The product site is static. We do not run accounts, analytics pixels, or a custom
-        database on it. Hosting is provided by Netlify. Downloads are served from GitHub Releases.
+        database on it. Hosting is provided by Cloudflare.
       </p>
       <h2>Contact</h2>
       <p>
