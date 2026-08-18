@@ -23,7 +23,7 @@ export default function Terms() {
       </p>
       <h2>Restrictions</h2>
       <p>
-        Do not redistribute the app, share a key beyond the two-Mac limit, or remove licensing,
+        Do not redistribute the app, share a key beyond the one-Mac limit, or remove licensing,
         signing, or update checks. Reverse engineering is allowed only where the law requires it.
       </p>
       <h2>Payments</h2>
