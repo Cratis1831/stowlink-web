@@ -11,10 +11,9 @@ export default function Terms() {
       </p>
       <h2>License</h2>
       <p>
-        A purchase grants a non-exclusive license to install {site.name} on up to two Macs you
-        own or control. You may deactivate a Mac to free a slot. The one-time plan is perpetual.
-        The yearly plan stays valid while the Lemon Squeezy subscription is active. The license
-        is for you or your organization.
+        A purchase grants a perpetual, non-exclusive license to install {site.name} on up to two
+        Macs you own or control. You may deactivate a Mac to free a slot. The license is for you
+        or your organization and is not a subscription.
       </p>
       <h2>What you get</h2>
       <p>

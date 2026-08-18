@@ -20,16 +20,13 @@ export default function Home() {
           </p>
           <div className="actions">
             <a className="button primary" {...buyProps}>
-              Buy {site.name} · {money(site.oneTimePrice)}
+              Buy {site.name} · {money()}
             </a>
             <a className="button" href="/download">
               Download for macOS
             </a>
           </div>
-          <p className="fine">
-            One-time {money(site.oneTimePrice)}, or {money(site.yearlyPrice)} / year. Two Macs.
-            macOS 14 or later.
-          </p>
+          <p className="fine">One-time {money()}. Two Macs. macOS 14 or later.</p>
         </div>
         <div className="app-frame" aria-hidden="true">
           <div className="app-chrome">

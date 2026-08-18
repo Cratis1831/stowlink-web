@@ -1,15 +1,19 @@
-const checkout = import.meta.env.VITE_LEMONSQUEEZY_CHECKOUT_URL ?? "";
-const yearlyCheckout =
-  import.meta.env.VITE_LEMONSQUEEZY_YEARLY_CHECKOUT_URL ?? checkout;
+const NEW_TEST_CHECKOUT =
+  "https://stowlink.lemonsqueezy.com/checkout/buy/9e2ec424-6138-434b-8528-0d8d32e4fe3c";
+const STALE_CHECKOUTS = [
+  "https://stowlink.lemonsqueezy.com/checkout/buy/1a7042c1-b552-4a01-bb51-b1a4cef2fb02",
+];
+
+const fromEnv = import.meta.env.VITE_LEMONSQUEEZY_CHECKOUT_URL ?? "";
+const checkout =
+  fromEnv && !STALE_CHECKOUTS.includes(fromEnv) ? fromEnv : NEW_TEST_CHECKOUT;
 
 export const site = {
   name: import.meta.env.VITE_APP_NAME ?? "StowLink",
   motto: "Your links, neatly stowed.",
   currency: import.meta.env.VITE_CURRENCY ?? "USD",
-  oneTimePrice: import.meta.env.VITE_PRICE_ONETIME ?? "29.99",
-  yearlyPrice: import.meta.env.VITE_PRICE_YEARLY ?? "39.00",
-  checkoutUrl: checkout || "/pricing",
-  yearlyCheckoutUrl: yearlyCheckout || "/pricing",
+  price: import.meta.env.VITE_PRICE_ONETIME ?? "29.99",
+  checkoutUrl: checkout,
   downloadUrl:
     import.meta.env.VITE_APP_DOWNLOAD_URL ??
     "https://github.com/Cratis1831/stowlink-releases/releases/latest/download/StowLink.zip",
@@ -20,15 +24,12 @@ export const site = {
   checkoutConfigured: Boolean(checkout),
 };
 
-export function money(amount: string) {
+export function money(amount: string = site.price) {
   return `$${amount} ${site.currency}`;
 }
 
-function checkoutProps(url: string) {
-  return site.checkoutConfigured
-    ? { href: url, target: "_blank" as const, rel: "noreferrer" as const }
-    : { href: "/pricing" };
-}
-
-export const buyProps = checkoutProps(site.checkoutUrl);
-export const yearlyBuyProps = checkoutProps(site.yearlyCheckoutUrl);
+export const buyProps = {
+  href: site.checkoutUrl,
+  target: "_blank" as const,
+  rel: "noreferrer" as const,
+};

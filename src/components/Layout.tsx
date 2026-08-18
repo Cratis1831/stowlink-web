@@ -24,7 +24,7 @@ export default function Layout() {
           ))}
         </nav>
         <a className="button primary" {...buyProps}>
-          Buy {money(site.oneTimePrice)}
+          Buy {money()}
         </a>
       </header>
       <main>
