@@ -14,9 +14,10 @@ export default function Pricing() {
   return (
     <section className="narrow pricing-page">
       <p className="eyebrow">Simple on purpose</p>
-      <h1>One purchase. Two Macs.</h1>
+      <h1>One purchase. One Mac.</h1>
       <p className="lede">
-        StowLink is a one-time license for up to two Macs. No subscription.
+        StowLink is a one-time license for one Mac. Deactivate it to move to another Mac. No
+        subscription.
       </p>
 
       <article className="price-card featured">

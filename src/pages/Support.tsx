@@ -34,7 +34,7 @@ export default function Support() {
           <AccordionContent>
             <p>
               On the old Mac, open Settings → License → Deactivate This Mac. Install StowLink on
-              the new Mac and enter the same key. A license works on up to two Macs at a time.
+              the new Mac and enter the same key. A license works on one Mac at a time.
             </p>
           </AccordionContent>
         </AccordionItem>

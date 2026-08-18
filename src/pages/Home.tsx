@@ -44,7 +44,7 @@ const details = [
   "Native macOS app",
   "One-time purchase",
   "No account required",
-  "One license for two Macs",
+  "One license for one Mac",
 ];
 
 export default function Home() {
@@ -70,8 +70,8 @@ export default function Home() {
               Get StowLink
               <ArrowRight data-icon="inline-end" aria-hidden="true" />
             </Link>
-            <a
-              href={site.downloadUrl}
+            <Link
+              to="/download"
               className={buttonVariants({
                 size: "lg",
                 variant: "outline",
@@ -79,7 +79,7 @@ export default function Home() {
               })}
             >
               Download for macOS
-            </a>
+            </Link>
           </div>
           <ul className="hero-details" aria-label="Purchase details">
             {details.map((detail) => (

@@ -13,9 +13,9 @@ export default function Terms() {
       </p>
       <h2>License</h2>
       <p>
-        A purchase grants a perpetual, non-exclusive license to install {site.name} on up to two
-        Macs you own or control. You may deactivate either Mac to move an activation. The license
-        is for you or your organization and is not a subscription.
+        A purchase grants a perpetual, non-exclusive license to install {site.name} on one Mac
+        you own or control. You may deactivate that Mac to move the activation. The license is
+        for you or your organization and is not a subscription.
       </p>
       <h2>What you get</h2>
       <p>
@@ -25,7 +25,7 @@ export default function Terms() {
       </p>
       <h2>Restrictions</h2>
       <p>
-        Do not redistribute the app, share a key beyond the two-Mac limit, or remove licensing,
+        Do not redistribute the app, share a key beyond the one-Mac limit, or remove licensing,
         signing, or update checks. Reverse engineering is allowed only where the law requires it.
       </p>
       <h2>Payments</h2>

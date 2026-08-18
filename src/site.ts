@@ -17,7 +17,7 @@ export const site = {
   downloadUrl:
     import.meta.env.VITE_APP_DOWNLOAD_URL ??
     "https://github.com/Cratis1831/stowlink-releases/releases/latest/download/StowLink.zip",
-  supportEmail: import.meta.env.VITE_SUPPORT_EMAIL ?? "support@forgelyte.com",
+  supportEmail: import.meta.env.VITE_SUPPORT_EMAIL ?? "support@stowlink.app",
   checkoutConfigured: Boolean(checkout),
 };
 

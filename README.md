@@ -24,3 +24,5 @@ The Worker configuration is stored in `wrangler.jsonc`. It serves `dist` as a si
 Downloads are always:
 
 `https://github.com/Cratis1831/stowlink-releases/releases/latest/download/StowLink.zip`
+
+`/download` checks GitHub for a `StowLink.zip` asset first. If none exists yet, it shows a waiting page instead of sending people to a 404.
