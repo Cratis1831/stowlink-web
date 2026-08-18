@@ -26,7 +26,7 @@ export default function Home() {
               Download for macOS
             </a>
           </div>
-          <p className="fine">One-time {money()}. Two Macs. macOS 14 or later.</p>
+          <p className="fine">One-time {money()}. One Mac. macOS 14 or later.</p>
         </div>
         <div className="app-frame" aria-hidden="true">
           <div className="app-chrome">

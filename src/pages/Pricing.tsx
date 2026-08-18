@@ -4,7 +4,7 @@ export default function Pricing() {
   return (
     <section className="narrow">
       <p className="eyebrow">Simple on purpose</p>
-      <h1>One purchase. Two Macs.</h1>
+      <h1>One purchase. One Mac.</h1>
       <p className="lede">
         Prices are in US dollars ({site.currency}). StowLink is a one-time license. You get the
         current app, subsequent Sparkle updates, and email support. Lemon Squeezy handles
@@ -22,7 +22,7 @@ export default function Pricing() {
         </p>
         <ul>
           <li>Perpetual license, no subscription</li>
-          <li>Activate on two Macs</li>
+          <li>Activate on one Mac at a time</li>
           <li>Notarized download and signed in-app updates</li>
           <li>Optional iCloud sync, local storage by default</li>
           <li>Email support from {site.supportEmail}</li>

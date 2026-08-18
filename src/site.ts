@@ -12,7 +12,7 @@ export const site = {
   name: import.meta.env.VITE_APP_NAME ?? "StowLink",
   motto: "Your links, neatly stowed.",
   currency: import.meta.env.VITE_CURRENCY ?? "USD",
-  price: import.meta.env.VITE_PRICE_ONETIME ?? "29.99",
+  price: import.meta.env.VITE_PRICE_ONETIME ?? "39.00",
   checkoutUrl: checkout,
   downloadUrl:
     import.meta.env.VITE_APP_DOWNLOAD_URL ??

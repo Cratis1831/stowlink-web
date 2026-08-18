@@ -24,14 +24,14 @@ export default function Support() {
         <h2>Move to another Mac</h2>
         <p>
           On the old Mac, open Settings → License → Deactivate This Mac. Install StowLink on the
-          new Mac and enter the same key. A license works on two Macs at a time.
+          new Mac and enter the same key. A license works on one Mac at a time.
         </p>
       </article>
       <article className="card">
         <h2>Reinstall</h2>
         <p>
           If this Mac still has its Keychain, StowLink reuses the existing activation. If the disk
-          was erased, activating again may use the second slot.
+          was erased, deactivate the old instance first, then activate again.
         </p>
       </article>
     </section>
