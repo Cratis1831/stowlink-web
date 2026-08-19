@@ -1,7 +1,8 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Download from "./pages/Download";
 import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 import Pricing from "./pages/Pricing";
 import Privacy from "./pages/Privacy";
 import Refunds from "./pages/Refunds";
@@ -19,7 +20,7 @@ export default function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/refunds" element={<Refunds />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

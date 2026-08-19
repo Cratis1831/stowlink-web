@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useEffect } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { buttonVariants } from "@/components/ui/button";
+import Seo from "@/components/Seo";
 import { site } from "../site";
 
 const nav = [
@@ -27,6 +28,10 @@ export default function Layout() {
 
   return (
     <div className="site-shell">
+      <Seo />
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <header className="site-header">
         <div className="header-inner">
           <NavLink to="/" className="brand" aria-label={`${site.name} home`}>
@@ -50,7 +55,7 @@ export default function Layout() {
           </NavLink>
         </div>
       </header>
-      <main>
+      <main id="main-content">
         <Outlet />
       </main>
       <footer className="site-footer">
@@ -63,6 +68,7 @@ export default function Layout() {
             </div>
           </div>
           <nav aria-label="Legal and support links">
+            <NavLink to="/download">Download</NavLink>
             <NavLink to="/privacy">Privacy</NavLink>
             <NavLink to="/terms">Terms</NavLink>
             <NavLink to="/refunds">Refunds</NavLink>

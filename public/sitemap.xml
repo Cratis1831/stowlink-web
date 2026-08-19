@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.stowlink.app/</loc>
+    <image:image>
+      <image:loc>https://www.stowlink.app/og-image.png</image:loc>
+      <image:title>StowLink for macOS</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.stowlink.app/stowlink-library.webp</image:loc>
+      <image:title>StowLink library, preview, and notes</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.stowlink.app/stowlink-folders.webp</image:loc>
+      <image:title>StowLink folders and saved links</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.stowlink.app/stowlink-detail.webp</image:loc>
+      <image:title>StowLink search results</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.stowlink.app/stowlink-search.webp</image:loc>
+      <image:title>StowLink Spotlight Search</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.stowlink.app/pricing</loc>
+  </url>
+  <url>
+    <loc>https://www.stowlink.app/download</loc>
+  </url>
+  <url>
+    <loc>https://www.stowlink.app/support</loc>
+  </url>
+  <url>
+    <loc>https://www.stowlink.app/privacy</loc>
+  </url>
+  <url>
+    <loc>https://www.stowlink.app/terms</loc>
+  </url>
+  <url>
+    <loc>https://www.stowlink.app/refunds</loc>
+  </url>
+</urlset>

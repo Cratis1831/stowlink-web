@@ -118,6 +118,25 @@
   min-height: 100vh;
 }
 
+.skip-link {
+  position: absolute;
+  z-index: 100;
+  top: 12px;
+  left: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
 .site-shell {
   min-height: 100vh;
   display: grid;
@@ -1070,6 +1089,17 @@ main > .support-page {
 
 .price-card > .button {
   width: 100%;
+}
+
+.price-card > p:last-child {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.price-card a:not(.button) {
+  color: var(--primary);
+  text-underline-offset: 3px;
 }
 
 .support-page {

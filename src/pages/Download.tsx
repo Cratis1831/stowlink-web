@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { buttonVariants } from "@/components/ui/button";
 import { site } from "../site";
 
 const LATEST_RELEASE_API =
@@ -27,7 +28,6 @@ export default function Download() {
         }
         if (!cancelled) {
           setStatus("ready");
-          window.location.replace(site.downloadUrl);
         }
       })
       .catch(() => {
@@ -41,9 +41,23 @@ export default function Download() {
     };
   }, []);
 
+  useEffect(() => {
+    if (status !== "ready") {
+      return;
+    }
+
+    const link = document.createElement("a");
+    link.href = site.downloadUrl;
+    link.rel = "noopener noreferrer";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }, [status]);
+
   if (status === "unavailable") {
     return (
       <section className="narrow">
+        <p className="eyebrow">macOS 14+</p>
         <h1>Download is not public yet</h1>
         <p className="lede">
           The notarized macOS app will appear here after the first release. Pricing, support, and
@@ -58,9 +72,27 @@ export default function Download() {
 
   return (
     <section className="narrow">
-      <h1>Starting download</h1>
+      <p className="eyebrow">macOS 14+</p>
+      <h1>Download StowLink</h1>
       <p className="lede">
-        If it does not start, <a href={site.downloadUrl}>download StowLink</a>.
+        Get the native Mac app for saving, organizing, and finding links. One-time purchase, no
+        account required.
+      </p>
+      {status === "ready" ? (
+        <p>
+          <a className={buttonVariants({ size: "lg" })} href={site.downloadUrl} rel="noopener noreferrer">
+            Download StowLink.zip
+          </a>
+        </p>
+      ) : (
+        <p className="lede">Checking for the latest public build…</p>
+      )}
+      <p>
+        If the download does not start,{" "}
+        <a href={site.downloadUrl} rel="noopener noreferrer">
+          save StowLink.zip
+        </a>{" "}
+        or <Link to="/pricing">buy a license</Link>.
       </p>
     </section>
   );

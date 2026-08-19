@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import { Link } from "react-router-dom";
 import { buyProps, site } from "../site";
 
 const includedFeatures = [
@@ -46,6 +47,9 @@ export default function Pricing() {
         <a className="button primary" {...buyProps}>
           Purchase
         </a>
+        <p>
+          Already licensed? <Link to="/download">Download StowLink for macOS</Link>
+        </p>
       </article>
     </section>
   );

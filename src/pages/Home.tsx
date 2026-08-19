@@ -148,7 +148,8 @@ export default function Home() {
             alt="Preview frame for the StowLink product walkthrough"
             width="1600"
             height="1023"
-            loading="lazy"
+            fetchPriority="high"
+            decoding="async"
             onAnimationEnd={() => setIsDemoPlaying(false)}
           />
           <button
@@ -187,7 +188,14 @@ export default function Home() {
                     <i />
                   </span>
                 </div>
-                <img src={item.src} alt={item.alt} width="1920" height="1277" loading="lazy" />
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  width="1920"
+                  height="1277"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div className="screenshot-copy">
                 <h3>{item.title}</h3>
