@@ -49,6 +49,14 @@ const featuredBadges = [
     alt: "TinyLaunch Badge",
     rel: "noopener",
   },
+  {
+    href: "https://www.producthunt.com/products/stowlink?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-stowlink",
+    src: "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1227057&theme=neutral&t=1787167110308",
+    alt: "StowLink - Your links, neatly stowed. | Product Hunt",
+    width: 250,
+    height: 54,
+    rel: "noopener noreferrer",
+  },
 ] as const;
 
 function FeaturedBadgeLinks({ hidden = false }: { hidden?: boolean }) {
