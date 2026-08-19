@@ -12,6 +12,10 @@
 /*.webp
   Cache-Control: public, max-age=2592000
 
+/*.mp4
+  Content-Type: video/mp4
+  Cache-Control: public, max-age=2592000
+
 /favicon.png
   Cache-Control: public, max-age=2592000
 

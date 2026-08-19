@@ -5,11 +5,10 @@ import {
   FolderTree,
   Keyboard,
   Link2,
-  Pause,
   Play,
   Search,
 } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -92,7 +91,16 @@ const screenshots: {
 ];
 
 export default function Home() {
+  const demoVideoRef = useRef<HTMLVideoElement>(null);
   const [isDemoPlaying, setIsDemoPlaying] = useState(false);
+
+  function playDemo() {
+    const video = demoVideoRef.current;
+    if (!video) {
+      return;
+    }
+    void video.play();
+  }
 
   return (
     <div className="home-page">
@@ -145,36 +153,46 @@ export default function Home() {
         </div>
         <div
           className={`video-frame${isDemoPlaying ? " is-playing" : ""}`}
-          aria-label="StowLink product demo preview"
+          onClick={isDemoPlaying ? undefined : playDemo}
         >
-          <img
-            src="/stowlink-library-640.webp"
-            srcSet="/stowlink-library-640.webp 640w, /stowlink-library-800.webp 800w, /stowlink-library.webp 1600w"
-            sizes="(max-width: 900px) 92vw, 800px"
-            alt="Preview frame for the StowLink product walkthrough"
-            width="1600"
-            height="1023"
-            loading="lazy"
-            decoding="async"
-            onAnimationEnd={() => setIsDemoPlaying(false)}
-          />
-          <button
-            type="button"
-            className="play-button"
-            aria-label={isDemoPlaying ? "Pause StowLink product demo" : "Play StowLink product demo"}
-            onClick={() => setIsDemoPlaying((playing) => !playing)}
+          <video
+            ref={demoVideoRef}
+            className="demo-video"
+            poster="/stowlink-demo-poster.webp"
+            preload="none"
+            playsInline
+            controls={isDemoPlaying}
+            width={1280}
+            height={894}
+            aria-label="StowLink product demo"
+            onPlay={() => setIsDemoPlaying(true)}
+            onEnded={() => {
+              setIsDemoPlaying(false);
+              const video = demoVideoRef.current;
+              if (video) {
+                video.currentTime = 0;
+              }
+            }}
           >
-            {isDemoPlaying ? (
-              <Pause aria-hidden="true" fill="currentColor" />
-            ) : (
-              <Play aria-hidden="true" fill="currentColor" />
-            )}
-          </button>
-          <span className="video-progress" aria-hidden="true" />
-          <div className="video-label">
-            <span>{isDemoPlaying ? "Playing preview" : "Product demo"}</span>
-            <span>00:18</span>
-          </div>
+            <source src="/stowlink-demo.mp4" type="video/mp4" />
+            StowLink product demo
+          </video>
+          {isDemoPlaying ? null : (
+            <>
+              <button
+                type="button"
+                className="play-button"
+                aria-label="Play StowLink product demo"
+                onClick={playDemo}
+              >
+                <Play aria-hidden="true" fill="currentColor" />
+              </button>
+              <div className="video-label">
+                <span>Product demo</span>
+                <span>01:12</span>
+              </div>
+            </>
+          )}
         </div>
       </section>
 
