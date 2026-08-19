@@ -79,6 +79,12 @@ export default function Layout() {
               <a href="https://launchpanda.dev/launches/productivity/stowlink" target="_blank" rel="noopener">
                 <img src="https://launchpanda.dev/images/badges/launchpanda-badge.svg" alt="Launched on stowlink" width="260" height="64" />
               </a>
+              <a href="https://lemonlaunch.dev/productivity/stowlink" target="_blank" rel="noopener">
+                <img src="https://lemonlaunch.dev/badge/lemonlaunch-badge-light.svg" alt="Featured on LemonLaunch" width="188" height="56" />
+              </a>
+              <a href="https://nicklaunches.com/products/stowlink/?utm_source=stowlink.app&utm_medium=badge&utm_campaign=featured" target="_blank" rel="noopener">
+                <img src="https://nicklaunches.com/badges/featured.png" alt="StowLink on Nick Launches" width="244" height="56" />
+              </a>
             </div>
           </div>
         </div>

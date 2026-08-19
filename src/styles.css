@@ -850,9 +850,11 @@
 }
 
 .footer-badges {
-  width: 130px;
-  height: 32px;
-  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  align-items: center;
+  gap: 10px;
   opacity: 0.72;
 }
 
@@ -863,6 +865,7 @@
 
 .footer-badges a {
   display: block;
+  flex: 0 0 130px;
 }
 
 .footer-badges img {
@@ -1303,6 +1306,10 @@ main > .prose {
 
   .footer-end {
     justify-items: start;
+  }
+
+  .footer-badges {
+    justify-content: start;
   }
 }
 
