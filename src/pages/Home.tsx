@@ -47,6 +47,21 @@ const details = [
   "One license for one Mac",
 ];
 
+const screenshots = [
+  {
+    src: "/stowlink-folders.webp",
+    alt: "StowLink showing a SwiftUI folder, a saved Apple Developer link, a page preview, and notes",
+    title: "Library, preview, and notes.",
+    copy: "Open a folder, pick a saved page, and keep the preview and notes beside it.",
+  },
+  {
+    src: "/stowlink-detail.webp",
+    alt: "StowLink search for swift, with matching pages and videos in the library",
+    title: "Find it without digging.",
+    copy: "Search by title, URL, or domain and jump to matching pages and videos.",
+  },
+];
+
 export default function Home() {
   const [isDemoPlaying, setIsDemoPlaying] = useState(false);
 
@@ -90,16 +105,13 @@ export default function Home() {
             ))}
           </ul>
         </div>
-
       </section>
 
       <section className="demo-section" aria-labelledby="demo-title">
         <div className="demo-copy">
           <p className="section-kicker">Quick demo</p>
           <h2 id="demo-title">See StowLink in action.</h2>
-          <p>
-            Save a link, file it, and open its preview.
-          </p>
+          <p>Save a link, file it, and open its preview.</p>
           <span className="demo-duration">Full workflow in under two minutes</span>
         </div>
         <div
@@ -109,8 +121,8 @@ export default function Home() {
           <img
             src="/stowlink-library.webp"
             alt="Preview frame for the StowLink product walkthrough"
-            width="3022"
-            height="2080"
+            width="1600"
+            height="1023"
             loading="lazy"
             onAnimationEnd={() => setIsDemoPlaying(false)}
           />
@@ -131,6 +143,33 @@ export default function Home() {
             <span>{isDemoPlaying ? "Playing preview" : "Product demo"}</span>
             <span>00:18</span>
           </div>
+        </div>
+      </section>
+
+      <section className="screenshot-gallery-section" aria-labelledby="screens-title">
+        <div className="screenshot-gallery-heading">
+          <p className="section-kicker">Inside the app</p>
+          <h2 id="screens-title">A closer look.</h2>
+        </div>
+        <div className="screenshot-gallery">
+          {screenshots.map((item) => (
+            <article key={item.src} className="screenshot-feature">
+              <div className="screenshot-shell">
+                <div className="screenshot-topbar" aria-hidden="true">
+                  <span className="screenshot-lights">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                </div>
+                <img src={item.src} alt={item.alt} width="1920" height="1277" loading="lazy" />
+              </div>
+              <div className="screenshot-copy">
+                <h3>{item.title}</h3>
+                <p>{item.copy}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -193,35 +232,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      <section className="product-stage" aria-labelledby="product-title">
-        <div className="section-heading product-heading">
-          <div>
-            <p className="section-kicker">Your library</p>
-            <h2 id="product-title">Made to feel at home on your Mac.</h2>
-          </div>
-          <p>
-            Folders, previews, and notes in one clear view.
-          </p>
-        </div>
-        <figure className="screenshot-shell">
-          <div className="screenshot-topbar" aria-hidden="true">
-            <span>StowLink</span>
-            <span>Library view</span>
-          </div>
-          <img
-            src="/stowlink-library.webp"
-            alt="StowLink showing nested folders, saved links, a website preview, organization details, and notes"
-            width="3022"
-            height="2080"
-            fetchPriority="high"
-          />
-          <figcaption>
-            Your complete StowLink library.
-          </figcaption>
-        </figure>
-      </section>
-
     </div>
   );
 }

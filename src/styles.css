@@ -210,6 +210,7 @@
 .product-stage,
 .feature-section,
 .demo-section,
+.screenshot-gallery-section,
 .shortcut-section {
   width: min(1180px, calc(100% - 48px));
   margin-inline: auto;
@@ -372,27 +373,111 @@
 .screenshot-topbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 44px;
-  padding: 0 18px;
+  height: 36px;
+  padding: 0 14px;
   border-bottom: 1px solid var(--border);
-  color: var(--muted-foreground);
-  font-size: 12px;
-  font-weight: 590;
+  background: color-mix(in oklch, var(--muted) 55%, var(--card));
+}
+
+.screenshot-lights {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.screenshot-lights i {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow: inset 0 -0.5px 0.5px rgb(0 0 0 / 0.18);
+}
+
+.screenshot-lights i:nth-child(2) {
+  background: #febc2e;
+}
+
+.screenshot-lights i:nth-child(3) {
+  background: #28c840;
 }
 
 .screenshot-shell img {
   display: block;
   width: 100%;
   height: auto;
-  background: #050505;
+  aspect-ratio: 1920 / 1277;
+  object-fit: cover;
+  object-position: top left;
+  background: var(--paper);
 }
 
-.screenshot-shell figcaption {
-  padding: 15px 18px 17px;
-  border-top: 1px solid var(--border);
+.screenshot-gallery-section {
+  width: min(1280px, calc(100% - 48px));
+  padding: 12px 0 88px;
+}
+
+.screenshot-gallery-heading {
+  max-width: 640px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.screenshot-gallery-heading h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.55rem, 2.4vw, 2rem);
+  font-weight: 660;
+  letter-spacing: -0.045em;
+}
+
+.screenshot-gallery {
+  display: grid;
+  gap: 72px;
+}
+
+.screenshot-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.85fr) minmax(240px, 0.72fr);
+  grid-template-areas: "image copy";
+  align-items: center;
+  gap: clamp(28px, 4.5vw, 64px);
+}
+
+.screenshot-feature .screenshot-shell {
+  grid-area: image;
+}
+
+.screenshot-feature .screenshot-copy {
+  grid-area: copy;
+}
+
+.screenshot-feature:nth-child(even) {
+  grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.85fr);
+  grid-template-areas: "copy image";
+}
+
+.screenshot-gallery .screenshot-shell {
+  border-radius: 20px;
+  box-shadow:
+    0 1px 1px rgb(0 0 0 / 0.04),
+    0 24px 56px rgb(0 0 0 / 0.1);
+}
+
+.screenshot-copy h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.4rem, 2.1vw, 1.85rem);
+  font-weight: 660;
+  letter-spacing: -0.045em;
+  line-height: 1.12;
+}
+
+.screenshot-copy p {
+  margin: 14px 0 0;
   color: var(--slate);
-  font-size: 13px;
+  font-size: 16px;
+  line-height: 1.65;
 }
 
 .feature-section {
@@ -1102,6 +1187,19 @@ main > .prose {
     grid-template-columns: 1fr;
   }
 
+  .screenshot-feature,
+  .screenshot-feature:nth-child(even) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "copy";
+    gap: 18px;
+  }
+
+  .screenshot-gallery {
+    gap: 48px;
+  }
+
   .hero-section {
     min-height: 0;
     padding-top: 60px;
@@ -1141,6 +1239,7 @@ main > .prose {
   .product-stage,
   .feature-section,
   .demo-section,
+  .screenshot-gallery-section,
   .shortcut-section,
   main > .narrow,
   main > .prose {
@@ -1226,6 +1325,7 @@ main > .prose {
   .product-stage,
   .feature-section,
   .demo-section,
+  .screenshot-gallery-section,
   .shortcut-section {
     padding: 64px 0;
   }
@@ -1240,7 +1340,8 @@ main > .prose {
   }
 
   .screenshot-topbar {
-    height: 38px;
+    height: 32px;
+    padding-inline: 12px;
   }
 
   .feature-grid {
