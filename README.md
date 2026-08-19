@@ -26,8 +26,8 @@ npm run dev
 - Build command: `npm run build`
 - Deploy command: `npx wrangler deploy`
 - Production branch: `main`
-- Production `VITE_LEMONSQUEEZY_CHECKOUT_URL` must be the **Live** checkout
-- Preview deploys should use the **Test** checkout
+- Production `VITE_LEMONSQUEEZY_CHECKOUT_URL` is the **Live** checkout
+- Debug macOS builds keep using `LicenseConfiguration.test`; do not point the public site at Test checkout
 - Custom domains: `www.stowlink.app` and `stowlink.app`
 
 The Worker configuration is stored in `wrangler.jsonc`. It serves `dist` as a single-page application so client-side routes work when opened directly. Security headers are stored in `public/_headers` and copied into `dist` during the build.
