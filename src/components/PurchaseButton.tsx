@@ -4,15 +4,7 @@ import { buyProps, site } from "../site";
 export default function PurchaseButton() {
   const { on, loading } = useFlag(site.purchaseFlagKey);
 
-  if (loading) {
-    return (
-      <span className="button primary" aria-busy="true" aria-disabled="true">
-        Purchase
-      </span>
-    );
-  }
-
-  if (!on) {
+  if (!loading && !on) {
     return (
       <span className="button primary" aria-disabled="true">
         Coming soon

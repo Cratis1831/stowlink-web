@@ -17,7 +17,7 @@ export default function Pricing() {
   return (
     <FlagsProvider
       clientId={site.databuddyClientId}
-      defaults={{ [site.purchaseFlagKey]: false }}
+      defaults={{ [site.purchaseFlagKey]: true }}
     >
     <section className="narrow pricing-page">
       <p className="eyebrow">Simple on purpose</p>
