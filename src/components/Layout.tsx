@@ -85,6 +85,9 @@ export default function Layout() {
               <a href="https://nicklaunches.com/products/stowlink/?utm_source=stowlink.app&utm_medium=badge&utm_campaign=featured" target="_blank" rel="noopener">
                 <img src="https://nicklaunches.com/badges/featured.png" alt="StowLink on Nick Launches" width="244" height="56" />
               </a>
+              <a href="https://daniellaunches.com" target="_blank">
+                <img src="https://daniellaunches.com/badge-light.svg" alt="Featured on DanielLaunches" width="220" height="48" />
+              </a>
             </div>
           </div>
         </div>

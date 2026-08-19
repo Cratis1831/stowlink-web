@@ -803,7 +803,7 @@
 
 .footer-inner {
   display: grid;
-  grid-template-columns: 1.4fr auto 1fr;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: 32px;
 }
@@ -851,10 +851,10 @@
 
 .footer-badges {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: end;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   opacity: 0.72;
 }
 
@@ -865,13 +865,13 @@
 
 .footer-badges a {
   display: block;
-  flex: 0 0 130px;
+  flex: 0 0 auto;
 }
 
 .footer-badges img {
   display: block;
-  width: 130px;
-  height: 32px;
+  width: 92px;
+  height: 22px;
 }
 
 main > .narrow,
@@ -1493,6 +1493,15 @@ main > .prose {
 
   .footer-inner nav {
     flex-wrap: wrap;
+  }
+
+  .footer-badges {
+    gap: 6px;
+  }
+
+  .footer-badges img {
+    width: 72px;
+    height: 18px;
   }
 }
 
