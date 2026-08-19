@@ -130,7 +130,7 @@ The ideal workflow is much simpler:
 3. Save it.
 4. Get back to what you were doing.
 
-You can organize it when it makes sense — without interrupting your workflow.
+You can organize it when it makes sense, without interrupting your workflow.
 
 ## Search becomes more important than folders
 
@@ -152,7 +152,7 @@ Sometimes you just need to type what you remember and get back to the link.
 
 I wanted a better way to manage the growing collection of links I keep on my Mac.
 
-So I built **StowLink** — a native macOS link library designed around one simple idea:
+So I built **StowLink**, a native macOS link library designed around one simple idea:
 
 **Save it once. Find it fast.**
 

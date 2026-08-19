@@ -102,6 +102,7 @@ function readPost(filePath: string): BlogPost {
   const filename = path.basename(filePath);
   const slug = filename.replace(/\.mdx?$/, "");
   const raw = fs.readFileSync(filePath, "utf8");
+  assertPlainProse(raw, filename);
   const parsed = matter(raw);
   const metadata = parseMetadata(parsed.data, filename);
   const html = stripLeadingH1(
@@ -184,4 +185,26 @@ function readingTimeMinutes(markdown: string): number {
 
 function stripLeadingH1(html: string): string {
   return html.replace(/^\s*<h1\b[^>]*>[\s\S]*?<\/h1>/i, "").trim();
+}
+
+const EM_DASH = "\u2014";
+const EM_DASH_ENTITIES = /&mdash;|&#8212;|&#x2014;/i;
+const EMOJI = /\p{Extended_Pictographic}/u;
+
+function assertPlainProse(raw: string, filename: string): void {
+  const prose = stripFencedCode(raw);
+
+  if (prose.includes(EM_DASH) || EM_DASH_ENTITIES.test(prose)) {
+    throw new Error(
+      `Blog post ${filename} contains an em dash. Use a comma, period, colon, or hyphen instead.`,
+    );
+  }
+
+  if (EMOJI.test(prose)) {
+    throw new Error(`Blog post ${filename} contains an emoji. Write the post in plain text.`);
+  }
+}
+
+function stripFencedCode(raw: string): string {
+  return raw.replace(/```[\s\S]*?```/g, "");
 }

@@ -22,7 +22,7 @@ content/blog/why-browser-bookmarks-arent-enough.md
 → /blog/why-browser-bookmarks-arent-enough
 ```
 
-Add frontmatter (`title`, `description`, `date`, `author`, `published`, and optional `updated`, `category`, `image`, `keywords`) and deploy. Drafts use `published: false` and stay off the index, homepage, sitemap, and RSS feed.
+Add frontmatter (`title`, `description`, `date`, `author`, `published`, and optional `updated`, `category`, `image`, `keywords`) and deploy. Drafts use `published: false` and stay off the index, homepage, sitemap, and RSS feed. Do not use emojis or em dashes; the build will reject them.
 
 ## Local
 
