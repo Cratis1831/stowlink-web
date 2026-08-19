@@ -69,7 +69,6 @@ export default function Layout() {
             </div>
           </div>
           <nav aria-label="Legal and support links">
-            <NavLink to="/download">Download</NavLink>
             <NavLink to="/privacy">Privacy</NavLink>
             <NavLink to="/terms">Terms</NavLink>
             <NavLink to="/refunds">Refunds</NavLink>

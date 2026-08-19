@@ -1,3 +1,4 @@
+import { Download as DownloadIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { buttonVariants } from "@/components/ui/button";
@@ -41,22 +42,9 @@ export default function Download() {
     };
   }, []);
 
-  useEffect(() => {
-    if (status !== "ready") {
-      return;
-    }
-
-    const link = document.createElement("a");
-    link.href = site.downloadUrl;
-    link.rel = "noopener noreferrer";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  }, [status]);
-
   if (status === "unavailable") {
     return (
-      <section className="narrow">
+      <section className="narrow download-page">
         <p className="eyebrow">macOS 14+</p>
         <h1>Download is not public yet</h1>
         <p className="lede">
@@ -71,7 +59,7 @@ export default function Download() {
   }
 
   return (
-    <section className="narrow">
+    <section className="narrow download-page">
       <p className="eyebrow">macOS 14+</p>
       <h1>Download StowLink</h1>
       <p className="lede">
@@ -80,19 +68,20 @@ export default function Download() {
       </p>
       {status === "ready" ? (
         <p>
-          <a className={buttonVariants({ size: "lg" })} href={site.downloadUrl} rel="noopener noreferrer">
-            Download StowLink.zip
+          <a
+            className={buttonVariants({ size: "lg", className: "cta-button" })}
+            href={site.downloadUrl}
+            rel="noopener noreferrer"
+          >
+            <DownloadIcon data-icon="inline-start" aria-hidden="true" />
+            Download
           </a>
         </p>
       ) : (
         <p className="lede">Checking for the latest public build…</p>
       )}
       <p>
-        If the download does not start,{" "}
-        <a href={site.downloadUrl} rel="noopener noreferrer">
-          save StowLink.zip
-        </a>{" "}
-        or <Link to="/pricing">buy a license</Link>.
+        Requires macOS 14 or later. Need a license? <Link to="/pricing">See pricing</Link>.
       </p>
     </section>
   );

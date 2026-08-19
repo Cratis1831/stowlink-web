@@ -515,12 +515,12 @@
 .feature-section {
   padding: 84px 0 88px;
   border-top: 1px solid var(--border);
-  scroll-margin-top: 24px;
 }
 
 .shortcut-section {
   padding: 78px 0 82px;
   border-top: 1px solid var(--border);
+  scroll-margin-top: 24px;
 }
 
 .shortcut-heading {
@@ -547,7 +547,7 @@
 
 .shortcut-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -562,6 +562,21 @@
   border-radius: 18px;
   background: var(--card);
   box-shadow: 0 10px 30px rgb(0 0 0 / 0.045);
+}
+
+.shortcut-card:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.shortcut-card:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.shortcut-card:nth-child(3) {
+  grid-column: 3;
+  grid-row: 1;
 }
 
 .shortcut-copy {
@@ -582,6 +597,7 @@
   font-weight: 650;
   letter-spacing: -0.02em;
   line-height: 1.3;
+  min-height: 2.6em;
 }
 
 .key-combination {
@@ -592,10 +608,14 @@
 }
 
 .shortcut-note {
-  margin: 16px 0 0;
+  grid-column: 2;
+  grid-row: 2;
+  margin: -4px 4px 0;
   color: var(--muted-foreground);
   font-size: 12px;
-  text-align: right;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
 }
 
 .feature-grid {
@@ -867,6 +887,27 @@ main > .prose {
 .lede {
   max-width: 720px;
   font-size: 18px;
+}
+
+.download-page > .eyebrow {
+  margin-bottom: 22px;
+}
+
+.download-page > h1 {
+  margin-bottom: 32px;
+  line-height: 1.08;
+}
+
+.download-page > .lede {
+  margin: 0 0 40px;
+}
+
+.download-page > p:not(.lede):not(.eyebrow) {
+  margin: 0;
+}
+
+.download-page > p:not(.lede):not(.eyebrow) + p {
+  margin-top: 32px;
 }
 
 .actions {
@@ -1372,8 +1413,28 @@ main > .prose {
     min-height: 0;
   }
 
+  .shortcut-card:nth-child(1),
+  .shortcut-card:nth-child(2),
+  .shortcut-card:nth-child(3) {
+    grid-column: 1;
+  }
+
+  .shortcut-card:nth-child(1) {
+    grid-row: 1;
+  }
+
+  .shortcut-card:nth-child(2) {
+    grid-row: 2;
+  }
+
   .shortcut-note {
-    text-align: center;
+    grid-column: 1;
+    grid-row: 3;
+    margin: -8px 4px 0;
+  }
+
+  .shortcut-card:nth-child(3) {
+    grid-row: 4;
   }
 
   .feature-grid::before,

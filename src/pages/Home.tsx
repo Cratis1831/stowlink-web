@@ -241,7 +241,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="shortcut-section" aria-labelledby="shortcut-title">
+      <section
+        id="features"
+        className="shortcut-section"
+        aria-labelledby="shortcut-title"
+      >
         <div className="shortcut-heading">
           <p className="section-kicker">Quick capture</p>
           <h2 id="shortcut-title">Save a link in seconds.</h2>
@@ -274,11 +278,22 @@ export default function Home() {
               <Kbd className="h-8 min-w-8 px-2 text-sm" aria-hidden="true">⇧</Kbd>
             </KbdGroup>
           </div>
+          <div className="shortcut-card">
+            <div className="shortcut-copy">
+              <span className="shortcut-label">Search Spotlight</span>
+              <strong>Jump to links, folders, and settings</strong>
+            </div>
+            <KbdGroup className="key-combination" aria-label="Command K">
+              <Kbd className="h-8 min-w-8 px-2 text-sm" aria-hidden="true">⌘</Kbd>
+              <span aria-hidden="true">+</span>
+              <Kbd className="h-8 min-w-8 px-2 text-sm" aria-hidden="true">K</Kbd>
+            </KbdGroup>
+          </div>
+          <p className="shortcut-note">Hold Command and double-tap Shift.</p>
         </div>
-        <p className="shortcut-note">Hold Command and double-tap Shift.</p>
       </section>
 
-      <section id="features" className="feature-section" aria-labelledby="features-title">
+      <section className="feature-section" aria-labelledby="features-title">
         <div className="section-heading feature-heading">
           <div>
             <p className="section-kicker">The essentials</p>
