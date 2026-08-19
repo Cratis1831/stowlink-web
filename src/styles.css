@@ -861,12 +861,8 @@
   opacity: 1;
 }
 
-.footer-badges-track {
-  display: flex;
-}
-
 .footer-badges a {
-  flex: 0 0 130px;
+  display: block;
 }
 
 .footer-badges img {
