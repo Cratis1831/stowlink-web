@@ -2,11 +2,12 @@
 
 > StowLink is a native macOS link library. Save links from anywhere, file them in nested folders, search the library, and keep page previews close at hand. One-time purchase, no account required.
 
-StowLink runs on macOS 14 or later. Checkout is a one-time license for two Macs, sold through Lemon Squeezy. This website is the product site for humans and agents: pricing, download, support, and legal pages.
+StowLink runs on macOS 14 or later. Checkout is a one-time license for two Macs, sold through Lemon Squeezy. This website is the product site for humans and agents: pricing, download, support, blog, and legal pages.
 
 ## Pages
 
 - [StowLink](https://www.stowlink.app/): Product overview, screenshots, keyboard shortcuts, and features.
+- [Blog](https://www.stowlink.app/blog): Tips and workflows for organizing saved links on a Mac.
 - [Pricing](https://www.stowlink.app/pricing): One-time $39 USD license for two Macs. No subscription.
 - [Download](https://www.stowlink.app/download): Download the notarized StowLink.zip for macOS.
 - [Support](https://www.stowlink.app/support): License help, moving to another Mac, and reinstalling. Email support@forgelyte.com.

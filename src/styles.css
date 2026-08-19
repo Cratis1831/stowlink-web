@@ -238,7 +238,8 @@
 .feature-section,
 .demo-section,
 .screenshot-gallery-section,
-.shortcut-section {
+.shortcut-section,
+.blog-teaser-section {
   width: min(1180px, calc(100% - 48px));
   margin-inline: auto;
 }
@@ -1286,6 +1287,313 @@ main > .prose {
   margin-top: 24px;
 }
 
+.blog-index {
+  width: min(860px, calc(100% - 48px));
+  margin: 56px auto 112px;
+}
+
+.blog-header .eyebrow {
+  margin: 0 0 14px;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.blog-header h1 {
+  max-width: 720px;
+  margin: 0 0 16px;
+  color: var(--ink);
+  font-size: clamp(2.25rem, 3.5vw, 2.75rem);
+  font-weight: 680;
+  letter-spacing: -0.05em;
+  line-height: 1.02;
+}
+
+.blog-header .lede {
+  max-width: 640px;
+  margin: 0 0 40px;
+  font-size: 18px;
+}
+
+.blog-list {
+  display: grid;
+  gap: 16px;
+}
+
+.blog-teaser-section {
+  padding: 84px 0 88px;
+  border-top: 1px solid var(--border);
+}
+
+.blog-teaser-section .blog-list {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.blog-teaser-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary);
+  font-size: 15px;
+  font-weight: 620;
+  text-decoration: none;
+}
+
+.blog-teaser-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+.blog-teaser-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.blog-card {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--card);
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.045);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.blog-card:hover,
+.blog-card:focus-visible {
+  border-color: var(--ring);
+  box-shadow: 0 14px 36px rgb(0 0 0 / 0.08);
+}
+
+.blog-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 630;
+  object-fit: cover;
+  background: var(--muted);
+}
+
+.blog-card-body {
+  padding: 20px 22px 22px;
+}
+
+.blog-card-meta,
+.blog-card time {
+  color: var(--muted-foreground);
+  font-size: 13px;
+  font-weight: 550;
+}
+
+.blog-card-meta {
+  margin: 0;
+}
+
+.blog-card h3 {
+  margin: 8px 0 10px;
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: 660;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.blog-card-body > p:not(.blog-card-meta) {
+  margin: 0;
+  color: var(--slate);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.blog-card time {
+  display: block;
+  margin-top: 14px;
+}
+
+.blog-empty {
+  margin: 0;
+  color: var(--slate);
+}
+
+.blog-article {
+  width: min(720px, calc(100% - 48px));
+  margin: 56px auto 112px;
+}
+
+.blog-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 22px;
+  color: var(--muted-foreground);
+  font-size: 13px;
+  font-weight: 550;
+}
+
+.blog-breadcrumb a {
+  color: var(--muted-foreground);
+  text-decoration: none;
+}
+
+.blog-breadcrumb a:hover,
+.blog-breadcrumb a:focus-visible {
+  color: var(--primary);
+}
+
+.blog-article > h1 {
+  margin: 0 0 16px;
+  color: var(--ink);
+  font-size: clamp(2.1rem, 4vw, 2.85rem);
+  font-weight: 680;
+  letter-spacing: -0.05em;
+  line-height: 1.08;
+}
+
+.blog-article > .lede {
+  margin: 0;
+  font-size: 18px;
+}
+
+.blog-byline {
+  margin: 20px 0 36px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 14px;
+}
+
+.blog-prose {
+  color: var(--ink);
+  font-size: 17.5px;
+  line-height: 1.75;
+}
+
+.blog-prose h2 {
+  margin: 48px 0 16px;
+  color: var(--ink);
+  font-size: 1.45rem;
+  font-weight: 660;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.blog-prose h3 {
+  margin: 32px 0 12px;
+  color: var(--ink);
+  font-size: 1.2rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.blog-prose p,
+.blog-prose ul,
+.blog-prose ol {
+  margin: 0 0 18px;
+}
+
+.blog-prose ul,
+.blog-prose ol {
+  padding-left: 1.35em;
+}
+
+.blog-prose li {
+  margin-bottom: 6px;
+}
+
+.blog-prose a {
+  color: var(--primary);
+  text-underline-offset: 3px;
+}
+
+.blog-prose strong {
+  font-weight: 650;
+}
+
+.blog-prose code {
+  padding: 0.12em 0.38em;
+  border-radius: 6px;
+  background: var(--muted);
+  font-size: 0.86em;
+}
+
+.blog-prose pre {
+  overflow-x: auto;
+  margin: 0 0 20px;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.blog-prose pre code {
+  padding: 0;
+  background: none;
+}
+
+.blog-prose blockquote {
+  margin: 0 0 20px;
+  padding: 2px 0 2px 16px;
+  border-left: 3px solid var(--border);
+  color: var(--slate);
+}
+
+.blog-prose hr {
+  margin: 36px 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+.blog-prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 20px;
+  border-radius: 12px;
+}
+
+.blog-cta {
+  margin-top: 48px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--card);
+  box-shadow: 0 8px 26px rgb(0 0 0 / 0.04);
+}
+
+.blog-cta h2 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-size: 1.35rem;
+  font-weight: 660;
+  letter-spacing: -0.03em;
+}
+
+.blog-cta p {
+  margin: 0 0 20px;
+  color: var(--slate);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.blog-related {
+  margin-top: 56px;
+}
+
+.blog-related > h2 {
+  margin: 0 0 18px;
+  color: var(--ink);
+  font-size: 1.25rem;
+  font-weight: 660;
+  letter-spacing: -0.03em;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -1378,6 +1686,9 @@ main > .prose {
   .demo-section,
   .screenshot-gallery-section,
   .shortcut-section,
+  .blog-teaser-section,
+  .blog-index,
+  .blog-article,
   main > .narrow,
   main > .prose {
     width: min(100% - 32px, 1180px);
@@ -1400,7 +1711,7 @@ main > .prose {
 
   .primary-nav {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     width: 100%;
     gap: 2px;
     overflow: visible;
@@ -1463,7 +1774,8 @@ main > .prose {
   .feature-section,
   .demo-section,
   .screenshot-gallery-section,
-  .shortcut-section {
+  .shortcut-section,
+  .blog-teaser-section {
     padding: 64px 0;
   }
 

@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import Download from "./pages/Download";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
@@ -14,6 +16,8 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/download" element={<Download />} />
         <Route path="/support" element={<Support />} />

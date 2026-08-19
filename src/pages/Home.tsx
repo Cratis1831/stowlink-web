@@ -10,10 +10,12 @@ import {
 } from "lucide-react";
 import { useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
+import BlogList from "@/components/blog/BlogList";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
+import { getLatestPosts } from "@/lib/blog";
 import { site } from "../site";
 
 const features = [
@@ -96,6 +98,7 @@ const screenshots: {
 export default function Home() {
   const demoVideoRef = useRef<HTMLVideoElement>(null);
   const [isDemoPlaying, setIsDemoPlaying] = useState(false);
+  const latestPosts = getLatestPosts(3);
 
   function playDemo() {
     const video = demoVideoRef.current;
@@ -315,6 +318,24 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {latestPosts.length > 0 ? (
+        <section className="blog-teaser-section" aria-labelledby="blog-teaser-title">
+          <div className="section-heading">
+            <div>
+              <p className="section-kicker">From the StowLink Blog</p>
+              <h2 id="blog-teaser-title">Tips for keeping your digital life organized.</h2>
+            </div>
+            <p>
+              <Link to="/blog" className="blog-teaser-link">
+                View all posts
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            </p>
+          </div>
+          <BlogList posts={latestPosts} />
+        </section>
+      ) : null}
     </div>
   );
 }
