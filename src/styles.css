@@ -944,6 +944,16 @@ main > .prose {
   background: var(--action-hover);
 }
 
+.button[aria-disabled="true"] {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.button.primary[aria-disabled="true"]:hover {
+  background: var(--action);
+}
+
 .fine {
   color: var(--slate);
   font-size: 13px;

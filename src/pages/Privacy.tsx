@@ -6,7 +6,7 @@ export default function Privacy() {
     <article className="prose">
       <LegalBackLink />
       <h1>Privacy policy</h1>
-      <p>Last updated August 18, 2026.</p>
+      <p>Last updated August 19, 2026.</p>
       <p>
         StowLink is a native macOS app. Your saved links, folders, notes, and preview cache stay
         on your Mac unless you turn on iCloud sync in Settings.
@@ -36,8 +36,9 @@ export default function Privacy() {
       </p>
       <h2>This website</h2>
       <p>
-        The product site is static. We do not run accounts, analytics pixels, or a custom
-        database on it. Hosting is provided by Cloudflare.
+        The product site is hosted by Cloudflare. We do not run accounts or a custom database on
+        it. Databuddy collects anonymized usage data such as page views, outbound link clicks, and
+        performance metrics. It does not collect your name, email, or StowLink license key.
       </p>
       <h2>Contact</h2>
       <p>

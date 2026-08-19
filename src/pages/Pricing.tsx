@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 import { Link } from "react-router-dom";
-import { buyProps, site } from "../site";
+import PurchaseButton from "@/components/PurchaseButton";
+import { site } from "../site";
 
 const includedFeatures = [
   "Save links with a global keyboard shortcut",
@@ -44,9 +45,7 @@ export default function Pricing() {
             ))}
           </ul>
         </div>
-        <a className="button primary" {...buyProps}>
-          Purchase
-        </a>
+        <PurchaseButton />
         <p>
           Already licensed? <Link to="/download">Download StowLink for macOS</Link>
         </p>

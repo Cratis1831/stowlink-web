@@ -18,6 +18,9 @@ export const site = {
     import.meta.env.VITE_APP_DOWNLOAD_URL ??
     "https://github.com/Cratis1831/stowlink-releases/releases/latest/download/StowLink.zip",
   supportEmail: import.meta.env.VITE_SUPPORT_EMAIL ?? "support@forgelyte.com",
+  databuddyClientId:
+    import.meta.env.VITE_DATABUDDY_CLIENT_ID ?? "66f68704-e58f-4846-845f-e759b2881f86",
+  purchaseFlagKey: import.meta.env.VITE_DATABUDDY_PURCHASE_FLAG ?? "live-products",
   checkoutConfigured: Boolean(checkout),
 };
 

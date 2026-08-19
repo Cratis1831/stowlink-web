@@ -7,6 +7,8 @@ interface ImportMetaEnv {
   readonly VITE_SUPPORT_EMAIL?: string;
   readonly VITE_CURRENCY?: string;
   readonly VITE_PRICE_ONETIME?: string;
+  readonly VITE_DATABUDDY_CLIENT_ID?: string;
+  readonly VITE_DATABUDDY_PURCHASE_FLAG?: string;
 }
 
 interface ImportMeta {
