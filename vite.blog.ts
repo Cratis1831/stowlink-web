@@ -50,11 +50,9 @@ export function stowlinkBlog(): Plugin {
         return;
       }
 
-      const dir = blogDir();
-      this.addWatchFile(dir);
-      for (const file of listPostFiles()) {
-        this.addWatchFile(file);
-      }
+      // Watch post files only. Watching the directory makes Vite treat it as an
+      // import, which breaks `npm run dev`. New/removed posts are picked up by
+      // the server watcher in configureServer.
 
       return `export const posts = ${JSON.stringify(loadPublishedPosts())};`;
     },
