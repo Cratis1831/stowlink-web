@@ -34,6 +34,21 @@ export type PageSeo = {
   robots: string;
   inSitemap: boolean;
   ogType: "website" | "article";
+  keywords?: string[];
+  image?: string;
+  imageAlt?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  lastmod?: string;
+  author?: string;
+  section?: string;
+  headline?: string;
+};
+
+export type SitemapUrl = {
+  path: string;
+  lastmod?: string;
+  images?: { loc: string; title: string }[];
 };
 
 export const pages: PageSeo[] = [
@@ -69,6 +84,15 @@ export const pages: PageSeo[] = [
     title: "Support — StowLink",
     description:
       "Help with StowLink licenses, moving to another Mac, and reinstalling. Email support@forgelyte.com with your purchase email.",
+    robots: "index, follow",
+    inSitemap: true,
+    ogType: "website",
+  },
+  {
+    path: "/blog",
+    title: "Blog — StowLink",
+    description:
+      "Tips, workflows, and ideas for keeping the links you care about organized on your Mac.",
     robots: "index, follow",
     inSitemap: true,
     ogType: "website",
@@ -149,6 +173,8 @@ export function breadcrumbName(path: string): string {
       return "Download";
     case "/support":
       return "Support";
+    case "/blog":
+      return "Blog";
     case "/privacy":
       return "Privacy";
     case "/terms":
@@ -217,26 +243,77 @@ export function jsonLdFor(page: PageSeo): unknown {
     };
 
     if (page.path !== "/") {
+      const crumbs = [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: siteName,
+          item: `${canonicalOrigin}/`,
+        },
+      ];
+
+      if (page.path.startsWith("/blog/") && page.path !== "/blog") {
+        crumbs.push({
+          "@type": "ListItem",
+          position: 2,
+          name: "Blog",
+          item: absoluteUrl("/blog"),
+        });
+        crumbs.push({
+          "@type": "ListItem",
+          position: 3,
+          name: page.headline ?? breadcrumbName(page.path),
+          item: pageUrl,
+        });
+      } else {
+        crumbs.push({
+          "@type": "ListItem",
+          position: 2,
+          name: breadcrumbName(page.path),
+          item: pageUrl,
+        });
+      }
+
       webPage.breadcrumb = {
         "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: siteName,
-            item: `${canonicalOrigin}/`,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: breadcrumbName(page.path),
-            item: pageUrl,
-          },
-        ],
+        itemListElement: crumbs,
       };
     }
 
     graph.push(webPage);
+
+    if (page.path.startsWith("/blog/") && page.path !== "/blog") {
+      const article: Record<string, unknown> = {
+        "@type": "Article",
+        "@id": `${pageUrl}#article`,
+        headline: page.headline ?? page.title,
+        description: page.description,
+        datePublished: page.publishedTime,
+        dateModified: page.modifiedTime ?? page.publishedTime,
+        author: {
+          "@type": "Organization",
+          name: page.author ?? siteName,
+        },
+        publisher: { "@id": orgId },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `${pageUrl}#webpage`,
+        },
+        inLanguage: "en",
+      };
+
+      if (page.image) {
+        article.image = absoluteUrl(page.image);
+      }
+      if (page.keywords?.length) {
+        article.keywords = page.keywords.join(", ");
+      }
+      if (page.section) {
+        article.articleSection = page.section;
+      }
+
+      graph.push(article);
+    }
   }
 
   if (page.path === "/support") {
@@ -272,12 +349,20 @@ export function robotsTxt(): string {
   ].join("\n");
 }
 
-export function sitemapXml(): string {
-  const urls = pages
-    .filter((page) => page.inSitemap)
-    .map((page) => {
-      const loc = absoluteUrl(page.path);
-      const images = sitemapImages[page.path] ?? [];
+export function sitemapXml(extraUrls: SitemapUrl[] = []): string {
+  const urls = [
+    ...pages
+      .filter((page) => page.inSitemap)
+      .map((page) => ({
+        path: page.path,
+        lastmod: page.lastmod,
+        images: sitemapImages[page.path],
+      })),
+    ...extraUrls,
+  ]
+    .map((entry) => {
+      const loc = absoluteUrl(entry.path);
+      const images = entry.images ?? [];
       const imageTags = images
         .map(
           (image) => `    <image:image>
@@ -286,9 +371,10 @@ export function sitemapXml(): string {
     </image:image>`,
         )
         .join("\n");
+      const lastmod = entry.lastmod ? `\n    <lastmod>${escapeXml(entry.lastmod)}</lastmod>` : "";
 
       return `  <url>
-    <loc>${loc}</loc>${imageTags ? `\n${imageTags}` : ""}
+    <loc>${loc}</loc>${lastmod}${imageTags ? `\n${imageTags}` : ""}
   </url>`;
     })
     .join("\n");
@@ -301,18 +387,95 @@ ${urls}
 `;
 }
 
+export function articlePageSeo(post: {
+  slug: string;
+  metadata: {
+    title: string;
+    description: string;
+    date: string;
+    updated?: string;
+    author: string;
+    category?: string;
+    image?: string;
+    keywords?: string[];
+  };
+}): PageSeo {
+  const modified = post.metadata.updated ?? post.metadata.date;
+
+  return {
+    path: `/blog/${post.slug}`,
+    title: `${post.metadata.title} | StowLink`,
+    description: post.metadata.description,
+    robots: "index, follow",
+    inSitemap: true,
+    ogType: "article",
+    keywords: post.metadata.keywords,
+    image: post.metadata.image,
+    imageAlt: post.metadata.title,
+    publishedTime: post.metadata.date,
+    modifiedTime: modified,
+    lastmod: modified,
+    author: post.metadata.author,
+    section: post.metadata.category,
+    headline: post.metadata.title,
+  };
+}
+
+export function rssXml(
+  posts: {
+    slug: string;
+    metadata: { title: string; description: string; date: string };
+  }[],
+): string {
+  const items = posts
+    .map((post) => {
+      const url = absoluteUrl(`/blog/${post.slug}`);
+      return `    <item>
+      <title>${escapeXml(post.metadata.title)}</title>
+      <link>${escapeXml(url)}</link>
+      <guid isPermaLink="true">${escapeXml(url)}</guid>
+      <description>${escapeXml(post.metadata.description)}</description>
+      <pubDate>${rssDate(post.metadata.date)}</pubDate>
+    </item>`;
+    })
+    .join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>${escapeXml(`${siteName} Blog`)}</title>
+    <link>${escapeXml(absoluteUrl("/blog"))}</link>
+    <description>${escapeXml("Tips, workflows, and ideas for keeping the links you care about organized.")}</description>
+    <language>en-us</language>
+    <atom:link href="${escapeXml(`${canonicalOrigin}/rss.xml`)}" rel="self" type="application/rss+xml"/>
+${items}
+  </channel>
+</rss>
+`;
+}
+
 export function seoHeadHtml(page: PageSeo): string {
   const url = page.path === "/404" ? `${canonicalOrigin}/` : absoluteUrl(page.path);
-  const image = absoluteUrl(ogImagePath);
+  const imagePath = page.image ?? ogImagePath;
+  const image = absoluteUrl(imagePath);
+  const imageAlt = page.imageAlt ?? `${siteName} — ${siteMotto}`;
   const jsonLd = JSON.stringify(jsonLdFor(page));
+  const keywords = page.keywords?.length
+    ? `\n    <meta name="keywords" content="${escapeAttr(page.keywords.join(", "))}" />`
+    : "";
+  const articleTimes = page.publishedTime
+    ? `\n    <meta property="article:published_time" content="${escapeAttr(page.publishedTime)}" />
+    <meta property="article:modified_time" content="${escapeAttr(page.modifiedTime ?? page.publishedTime)}" />`
+    : "";
+  const rss = `\n    <link rel="alternate" type="application/rss+xml" title="${escapeAttr(`${siteName} Blog`)}" href="${escapeAttr(`${canonicalOrigin}/rss.xml`)}" />`;
 
   return `    <title>${escapeHtml(page.title)}</title>
     <meta name="description" content="${escapeAttr(page.description)}" />
     <meta name="robots" content="${escapeAttr(page.robots)}" />
-    <meta name="googlebot" content="${escapeAttr(page.robots)}" />
+    <meta name="googlebot" content="${escapeAttr(page.robots)}" />${keywords}
     <link rel="canonical" href="${escapeAttr(url)}" />
     <link rel="alternate" hreflang="en" href="${escapeAttr(url)}" />
-    <link rel="alternate" hreflang="x-default" href="${escapeAttr(url)}" />
+    <link rel="alternate" hreflang="x-default" href="${escapeAttr(url)}" />${rss}
     <meta property="og:type" content="${page.ogType}" />
     <meta property="og:site_name" content="${escapeAttr(siteName)}" />
     <meta property="og:locale" content="en_US" />
@@ -320,15 +483,15 @@ export function seoHeadHtml(page: PageSeo): string {
     <meta property="og:description" content="${escapeAttr(page.description)}" />
     <meta property="og:url" content="${escapeAttr(url)}" />
     <meta property="og:image" content="${escapeAttr(image)}" />
-    <meta property="og:image:alt" content="${escapeAttr(`${siteName} — ${siteMotto}`)}" />
+    <meta property="og:image:alt" content="${escapeAttr(imageAlt)}" />
     <meta property="og:image:width" content="${ogImageWidth}" />
     <meta property="og:image:height" content="${ogImageHeight}" />
-    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:type" content="${imageMime(imagePath)}" />${articleTimes}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeAttr(page.title)}" />
     <meta name="twitter:description" content="${escapeAttr(page.description)}" />
     <meta name="twitter:image" content="${escapeAttr(image)}" />
-    <meta name="twitter:image:alt" content="${escapeAttr(`${siteName} — ${siteMotto}`)}" />
+    <meta name="twitter:image:alt" content="${escapeAttr(imageAlt)}" />
     <script id="json-ld" type="application/ld+json">${jsonLd}</script>`;
 }
 
@@ -342,4 +505,19 @@ function escapeHtml(value: string): string {
 
 function escapeXml(value: string): string {
   return escapeHtml(value).replace(/'/g, "&apos;");
+}
+
+function imageMime(path: string): string {
+  if (path.endsWith(".webp")) {
+    return "image/webp";
+  }
+  if (path.endsWith(".jpg") || path.endsWith(".jpeg")) {
+    return "image/jpeg";
+  }
+  return "image/png";
+}
+
+function rssDate(isoDate: string): string {
+  const [year, month, day] = isoDate.split("-").map(Number);
+  return new Date(Date.UTC(year, month - 1, day)).toUTCString();
 }

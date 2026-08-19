@@ -1,5 +1,10 @@
 /// <reference types="vite/client" />
 
+declare module "virtual:stowlink-blog" {
+  import type { BlogPost } from "./types/blog";
+  export const posts: BlogPost[];
+}
+
 interface ImportMetaEnv {
   readonly VITE_APP_NAME?: string;
   readonly VITE_LEMONSQUEEZY_CHECKOUT_URL?: string;

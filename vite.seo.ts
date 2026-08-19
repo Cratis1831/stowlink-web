@@ -2,7 +2,17 @@ import fs from "node:fs";
 import path from "node:path";
 import react from "@vitejs/plugin-react";
 import { createServer, type Plugin } from "vite";
-import { notFoundPage, pages, robotsTxt, seoHeadHtml, sitemapXml, type PageSeo } from "./src/seo";
+import { loadPublishedPosts, stowlinkBlog } from "./vite.blog";
+import {
+  articlePageSeo,
+  notFoundPage,
+  pages,
+  robotsTxt,
+  rssXml,
+  seoHeadHtml,
+  sitemapXml,
+  type PageSeo,
+} from "./src/seo";
 
 const HEAD_START = "<!--seo-head-->";
 const HEAD_END = "<!--/seo-head-->";
@@ -26,7 +36,7 @@ export function stowlinkSeo(): Plugin {
           resolve: {
             alias: { "@": path.resolve(process.cwd(), "src") },
           },
-          plugins: [react()],
+          plugins: [react(), stowlinkBlog()],
           logLevel: "error",
         });
 
@@ -34,8 +44,10 @@ export function stowlinkSeo(): Plugin {
           const { render } = (await server.ssrLoadModule("/src/entry-server.tsx")) as {
             render: (url: string) => string;
           };
+          const posts = loadPublishedPosts();
+          const prerenderPages: PageSeo[] = [...pages, ...posts.map(articlePageSeo)];
 
-          for (const page of pages) {
+          for (const page of prerenderPages) {
             const html = withPrerender(withSeoHead(built, page), render(page.path));
             if (page.path === "/") {
               fs.writeFileSync(indexPath, html);
@@ -52,7 +64,19 @@ export function stowlinkSeo(): Plugin {
             withPrerender(withSeoHead(built, notFoundPage), render("/__not-found")),
           );
           fs.writeFileSync(path.join(dist, "robots.txt"), robotsTxt());
-          fs.writeFileSync(path.join(dist, "sitemap.xml"), sitemapXml());
+          fs.writeFileSync(
+            path.join(dist, "sitemap.xml"),
+            sitemapXml(
+              posts.map((post) => ({
+                path: `/blog/${post.slug}`,
+                lastmod: post.metadata.updated ?? post.metadata.date,
+                images: post.metadata.image
+                  ? [{ loc: post.metadata.image, title: post.metadata.title }]
+                  : undefined,
+              })),
+            ),
+          );
+          fs.writeFileSync(path.join(dist, "rss.xml"), rssXml(posts));
         } finally {
           await server.close();
         }

@@ -13,6 +13,17 @@ Use a **Domain property** for `stowlink.app`. That covers `www.stowlink.app`, th
 
 The build writes a real HTML file for each public route plus `404.html`. Unknown URLs return HTTP 404 instead of the homepage.
 
+## Blog
+
+Posts are Markdown files in `content/blog/`. The filename is the URL slug:
+
+```text
+content/blog/why-browser-bookmarks-arent-enough.md
+→ /blog/why-browser-bookmarks-arent-enough
+```
+
+Add frontmatter (`title`, `description`, `date`, `author`, `published`, and optional `updated`, `category`, `image`, `keywords`) and deploy. Drafts use `published: false` and stay off the index, homepage, sitemap, and RSS feed.
+
 ## Local
 
 ```sh

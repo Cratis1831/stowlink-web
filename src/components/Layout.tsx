@@ -7,6 +7,7 @@ import Seo from "@/components/Seo";
 import { site } from "../site";
 
 const nav = [
+  ["/blog", "Blog"],
   ["/pricing", "Pricing"],
   ["/support", "Support"],
 ] as const;

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { pageSeoForPath } from "@/lib/blog";
 import {
   absoluteUrl,
   jsonLdFor,
   ogImageHeight,
   ogImagePath,
   ogImageWidth,
-  pageForPath,
   siteMotto,
   siteName,
   type PageSeo,
@@ -16,7 +16,7 @@ export default function Seo() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    applyPageSeo(pageForPath(pathname));
+    applyPageSeo(pageSeoForPath(pathname));
   }, [pathname]);
 
   return null;
@@ -24,15 +24,23 @@ export default function Seo() {
 
 function applyPageSeo(page: PageSeo) {
   const url = page.path === "/404" ? absoluteUrl("/") : absoluteUrl(page.path);
-  const image = absoluteUrl(ogImagePath);
+  const imagePath = page.image ?? ogImagePath;
+  const image = absoluteUrl(imagePath);
+  const imageAlt = page.imageAlt ?? `${siteName} — ${siteMotto}`;
 
   document.title = page.title;
   setMeta("name", "description", page.description);
   setMeta("name", "robots", page.robots);
   setMeta("name", "googlebot", page.robots);
+  if (page.keywords?.length) {
+    setMeta("name", "keywords", page.keywords.join(", "));
+  } else {
+    removeMeta("name", "keywords");
+  }
   setLink("canonical", url);
   setHreflang("en", url);
   setHreflang("x-default", url);
+  setRss(`${siteName} Blog`, `${absoluteUrl("/rss.xml")}`);
   setMeta("property", "og:type", page.ogType);
   setMeta("property", "og:site_name", siteName);
   setMeta("property", "og:locale", "en_US");
@@ -40,15 +48,22 @@ function applyPageSeo(page: PageSeo) {
   setMeta("property", "og:description", page.description);
   setMeta("property", "og:url", url);
   setMeta("property", "og:image", image);
-  setMeta("property", "og:image:alt", `${siteName} — ${siteMotto}`);
+  setMeta("property", "og:image:alt", imageAlt);
   setMeta("property", "og:image:width", String(ogImageWidth));
   setMeta("property", "og:image:height", String(ogImageHeight));
-  setMeta("property", "og:image:type", "image/png");
+  setMeta("property", "og:image:type", imageMime(imagePath));
+  if (page.publishedTime) {
+    setMeta("property", "article:published_time", page.publishedTime);
+    setMeta("property", "article:modified_time", page.modifiedTime ?? page.publishedTime);
+  } else {
+    removeMeta("property", "article:published_time");
+    removeMeta("property", "article:modified_time");
+  }
   setMeta("name", "twitter:card", "summary_large_image");
   setMeta("name", "twitter:title", page.title);
   setMeta("name", "twitter:description", page.description);
   setMeta("name", "twitter:image", image);
-  setMeta("name", "twitter:image:alt", `${siteName} — ${siteMotto}`);
+  setMeta("name", "twitter:image:alt", imageAlt);
 
   let script = document.getElementById("json-ld");
   if (!script) {
@@ -71,8 +86,12 @@ function setMeta(kind: "name" | "property", key: string, value: string) {
   element.setAttribute("content", value);
 }
 
+function removeMeta(kind: "name" | "property", key: string) {
+  document.head.querySelector(`meta[${kind}="${cssEscape(key)}"]`)?.remove();
+}
+
 function setLink(rel: string, href: string) {
-  let element = document.head.querySelector(`link[rel="${rel}"]`);
+  let element = document.head.querySelector(`link[rel="${rel}"]:not([hreflang]):not([type])`);
   if (!element) {
     element = document.createElement("link");
     element.setAttribute("rel", rel);
@@ -90,6 +109,28 @@ function setHreflang(lang: string, href: string) {
     document.head.appendChild(element);
   }
   element.setAttribute("href", href);
+}
+
+function setRss(title: string, href: string) {
+  let element = document.head.querySelector('link[rel="alternate"][type="application/rss+xml"]');
+  if (!element) {
+    element = document.createElement("link");
+    element.setAttribute("rel", "alternate");
+    element.setAttribute("type", "application/rss+xml");
+    document.head.appendChild(element);
+  }
+  element.setAttribute("title", title);
+  element.setAttribute("href", href);
+}
+
+function imageMime(path: string): string {
+  if (path.endsWith(".webp")) {
+    return "image/webp";
+  }
+  if (path.endsWith(".jpg") || path.endsWith(".jpeg")) {
+    return "image/jpeg";
+  }
+  return "image/png";
 }
 
 function cssEscape(value: string): string {
