@@ -6,15 +6,15 @@ export default function Terms() {
     <article className="prose">
       <LegalBackLink />
       <h1>Terms of use</h1>
-      <p>Last updated August 18, 2026.</p>
+      <p>Last updated August 19, 2026.</p>
       <p>
         By buying or using {site.name}, you agree to these terms. The app is licensed, not sold,
         for use on macOS 14 or later.
       </p>
       <h2>License</h2>
       <p>
-        A purchase grants a perpetual, non-exclusive license to install {site.name} on one Mac
-        you own or control. You may deactivate that Mac to move the activation. The license is
+        A purchase grants a perpetual, non-exclusive license to install {site.name} on up to two
+        Macs you own or control. You may deactivate a Mac to move that activation. The license is
         for you or your organization and is not a subscription.
       </p>
       <h2>What you get</h2>
@@ -25,7 +25,7 @@ export default function Terms() {
       </p>
       <h2>Restrictions</h2>
       <p>
-        Do not redistribute the app, share a key beyond the one-Mac limit, or remove licensing,
+        Do not redistribute the app, share a key beyond the two-Mac limit, or remove licensing,
         signing, or update checks. Reverse engineering is allowed only where the law requires it.
       </p>
       <h2>Payments</h2>

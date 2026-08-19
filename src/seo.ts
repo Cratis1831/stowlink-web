@@ -17,7 +17,7 @@ export const supportFaqs = [
     id: "move-mac",
     question: "Move to another Mac",
     answer:
-      "On the old Mac, open Settings → License → Deactivate This Mac. Install StowLink on the new Mac and enter the same key. A license works on one Mac at a time.",
+      "On a Mac you no longer need, open Settings → License → Deactivate This Mac. Install StowLink on the new Mac and enter the same key. A license works on up to two Macs at a time.",
   },
   {
     id: "reinstall",
@@ -50,7 +50,7 @@ export const pages: PageSeo[] = [
     path: "/pricing",
     title: "Pricing — StowLink for macOS",
     description:
-      "StowLink is a one-time $39 USD license for one Mac. No subscription. Nested folders, search, previews, notes, and optional iCloud sync.",
+      "StowLink is a one-time $39 USD license for two Macs. No subscription. Nested folders, search, previews, notes, and optional iCloud sync.",
     robots: "index, follow",
     inSitemap: true,
     ogType: "website",
@@ -86,7 +86,7 @@ export const pages: PageSeo[] = [
     path: "/terms",
     title: "Terms of Use — StowLink",
     description:
-      "License terms for StowLink. One-time purchase for one Mac, Lemon Squeezy as merchant of record, and what the license includes.",
+      "License terms for StowLink. One-time purchase for two Macs, Lemon Squeezy as merchant of record, and what the license includes.",
     robots: "index, follow",
     inSitemap: true,
     ogType: "article",

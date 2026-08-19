@@ -43,7 +43,7 @@ const details = [
   "Native macOS app",
   "One-time purchase",
   "No account required",
-  "One license for one Mac",
+  "One license for two Macs",
 ];
 
 const screenshots: {
