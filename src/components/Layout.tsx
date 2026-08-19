@@ -11,6 +11,14 @@ const nav = [
   ["/support", "Support"],
 ] as const;
 
+const launchBadges = [
+  {
+    href: "https://launchpanda.dev/launches/productivity/stowlink",
+    src: "https://launchpanda.dev/images/badges/launchpanda-badge.svg",
+    alt: "Launched on LaunchPanda",
+  },
+];
+
 export default function Layout() {
   const { pathname, hash } = useLocation();
 
@@ -74,7 +82,17 @@ export default function Layout() {
             <NavLink to="/refunds">Refunds</NavLink>
             <a href={`mailto:${site.supportEmail}`}>Contact</a>
           </nav>
-          <p>Built for macOS.</p>
+          <div className="footer-end">
+            <div className="footer-badges" aria-label="Launch directories">
+              <div className="footer-badges-track">
+                {launchBadges.map((badge) => (
+                  <a key={badge.href} href={badge.href} target="_blank" rel="noopener">
+                    <img src={badge.src} alt={badge.alt} width={130} height={32} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </footer>
       <Analytics />
