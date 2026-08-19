@@ -3,5 +3,3 @@ Allow: /
 Disallow: /404.html
 
 Sitemap: https://www.stowlink.app/sitemap.xml
-
-Sitemap: https://www.stowlink.app/sitemap.xml

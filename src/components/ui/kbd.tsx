@@ -13,10 +13,11 @@ function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
   )
 }
 
-function KbdGroup({ className, ...props }: React.ComponentProps<"div">) {
+function KbdGroup({ className, ...props }: React.ComponentProps<"span">) {
   return (
-    <kbd
+    <span
       data-slot="kbd-group"
+      role="group"
       className={cn("inline-flex items-center gap-1", className)}
       {...props}
     />
