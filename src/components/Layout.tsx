@@ -1,8 +1,8 @@
-import { Databuddy, FlagsProvider } from "@databuddy/sdk/react";
 import { ArrowUpRight } from "lucide-react";
 import { useEffect } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { buttonVariants } from "@/components/ui/button";
+import Analytics from "@/components/Analytics";
 import Seo from "@/components/Seo";
 import { site } from "../site";
 
@@ -28,11 +28,7 @@ export default function Layout() {
   }, [pathname, hash]);
 
   return (
-    <FlagsProvider
-      clientId={site.databuddyClientId}
-      defaults={{ [site.purchaseFlagKey]: false }}
-    >
-      <div className="site-shell">
+    <div className="site-shell">
       <Seo />
       <a className="skip-link" href="#main-content">
         Skip to content
@@ -82,18 +78,7 @@ export default function Layout() {
           <p>Built for macOS.</p>
         </div>
       </footer>
-      {site.databuddyClientId ? (
-        <Databuddy
-          clientId={site.databuddyClientId}
-          trackHashChanges={true}
-          trackAttributes={true}
-          trackOutgoingLinks={true}
-          trackInteractions={true}
-          trackWebVitals={true}
-          trackErrors={true}
-        />
-      ) : null}
-      </div>
-    </FlagsProvider>
+      <Analytics />
+    </div>
   );
 }

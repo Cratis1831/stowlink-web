@@ -1,3 +1,4 @@
+import { FlagsProvider } from "@databuddy/sdk/react";
 import { Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import PurchaseButton from "@/components/PurchaseButton";
@@ -14,6 +15,10 @@ const includedFeatures = [
 
 export default function Pricing() {
   return (
+    <FlagsProvider
+      clientId={site.databuddyClientId}
+      defaults={{ [site.purchaseFlagKey]: false }}
+    >
     <section className="narrow pricing-page">
       <p className="eyebrow">Simple on purpose</p>
       <h1>One purchase. One Mac.</h1>
@@ -51,5 +56,6 @@ export default function Pricing() {
         </p>
       </article>
     </section>
+    </FlagsProvider>
   );
 }

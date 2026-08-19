@@ -18,6 +18,9 @@
 /app-icon.png
   Cache-Control: public, max-age=2592000
 
+/apple-touch-icon.png
+  Cache-Control: public, max-age=2592000
+
 /robots.txt
   Cache-Control: public, max-age=3600
 

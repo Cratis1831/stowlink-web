@@ -56,21 +56,21 @@ const screenshots: {
 }[] = [
   {
     src: "/stowlink-folders.webp",
-    srcSet: "/stowlink-folders-960.webp 960w, /stowlink-folders.webp 1920w",
+    srcSet: "/stowlink-folders-640.webp 640w, /stowlink-folders-960.webp 960w, /stowlink-folders.webp 1920w",
     alt: "StowLink showing a SwiftUI folder, a saved Apple Developer link, a page preview, and notes",
     title: "Library, preview, and notes.",
     copy: "Open a folder, pick a saved page, and keep the preview and notes beside it.",
   },
   {
     src: "/stowlink-detail.webp",
-    srcSet: "/stowlink-detail-960.webp 960w, /stowlink-detail.webp 1920w",
+    srcSet: "/stowlink-detail-640.webp 640w, /stowlink-detail-960.webp 960w, /stowlink-detail.webp 1920w",
     alt: "StowLink search for swift, with matching pages and videos in the library",
     title: "Find it without digging.",
     copy: "Search by title, URL, or domain and jump to matching pages and videos.",
   },
   {
     src: "/stowlink-search.webp",
-    srcSet: "/stowlink-search-960.webp 960w, /stowlink-search.webp 1920w",
+    srcSet: "/stowlink-search-640.webp 640w, /stowlink-search-960.webp 960w, /stowlink-search.webp 1920w",
     alt: "StowLink Spotlight Search overlay with recent links, folders, and keyboard shortcuts",
     title: "Spotlight Search from the keyboard.",
     copy: (
@@ -148,8 +148,8 @@ export default function Home() {
           aria-label="StowLink product demo preview"
         >
           <img
-            src="/stowlink-library-800.webp"
-            srcSet="/stowlink-library-800.webp 800w, /stowlink-library.webp 1600w"
+            src="/stowlink-library-640.webp"
+            srcSet="/stowlink-library-640.webp 640w, /stowlink-library-800.webp 800w, /stowlink-library.webp 1600w"
             sizes="(max-width: 900px) 92vw, 800px"
             alt="Preview frame for the StowLink product walkthrough"
             width="1600"
