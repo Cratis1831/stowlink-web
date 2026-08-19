@@ -11,6 +11,65 @@ const nav = [
   ["/support", "Support"],
 ] as const;
 
+const featuredBadges = [
+  {
+    href: "https://launchpanda.dev/launches/productivity/stowlink",
+    src: "https://launchpanda.dev/images/badges/launchpanda-badge.svg",
+    alt: "Launched on stowlink",
+    width: 260,
+    height: 64,
+    rel: "noopener",
+  },
+  {
+    href: "https://lemonlaunch.dev/productivity/stowlink",
+    src: "https://lemonlaunch.dev/badge/lemonlaunch-badge-light.svg",
+    alt: "Featured on LemonLaunch",
+    width: 188,
+    height: 56,
+    rel: "noopener",
+  },
+  {
+    href: "https://nicklaunches.com/products/stowlink/?utm_source=stowlink.app&utm_medium=badge&utm_campaign=featured",
+    src: "https://nicklaunches.com/badges/featured.png",
+    alt: "StowLink on Nick Launches",
+    width: 244,
+    height: 56,
+    rel: "noopener",
+  },
+  {
+    href: "https://daniellaunches.com",
+    src: "https://daniellaunches.com/badge-light.svg",
+    alt: "Featured on DanielLaunches",
+    width: 220,
+    height: 48,
+  },
+  {
+    href: "https://tinylaunch.com",
+    src: "https://tinylaunch.com/tinylaunch_badge_launching_soon.svg",
+    alt: "TinyLaunch Badge",
+    rel: "noopener",
+  },
+] as const;
+
+function FeaturedBadgeLinks({ hidden = false }: { hidden?: boolean }) {
+  return featuredBadges.map((badge) => (
+    <a
+      key={`${hidden ? "dup-" : ""}${badge.href}`}
+      href={badge.href}
+      target="_blank"
+      rel={"rel" in badge ? badge.rel : undefined}
+      tabIndex={hidden ? -1 : undefined}
+    >
+      <img
+        src={badge.src}
+        alt={hidden ? "" : badge.alt}
+        width={"width" in badge ? badge.width : undefined}
+        height={"height" in badge ? badge.height : undefined}
+      />
+    </a>
+  ));
+}
+
 export default function Layout() {
   const { pathname, hash } = useLocation();
 
@@ -76,18 +135,14 @@ export default function Layout() {
           </nav>
           <div className="footer-end">
             <div className="footer-badges" aria-label="Featured on">
-              <a href="https://launchpanda.dev/launches/productivity/stowlink" target="_blank" rel="noopener">
-                <img src="https://launchpanda.dev/images/badges/launchpanda-badge.svg" alt="Launched on stowlink" width="260" height="64" />
-              </a>
-              <a href="https://lemonlaunch.dev/productivity/stowlink" target="_blank" rel="noopener">
-                <img src="https://lemonlaunch.dev/badge/lemonlaunch-badge-light.svg" alt="Featured on LemonLaunch" width="188" height="56" />
-              </a>
-              <a href="https://nicklaunches.com/products/stowlink/?utm_source=stowlink.app&utm_medium=badge&utm_campaign=featured" target="_blank" rel="noopener">
-                <img src="https://nicklaunches.com/badges/featured.png" alt="StowLink on Nick Launches" width="244" height="56" />
-              </a>
-              <a href="https://daniellaunches.com" target="_blank">
-                <img src="https://daniellaunches.com/badge-light.svg" alt="Featured on DanielLaunches" width="220" height="48" />
-              </a>
+              <div className="footer-badges-track">
+                <div className="footer-badges-set">
+                  <FeaturedBadgeLinks />
+                </div>
+                <div className="footer-badges-set" aria-hidden="true">
+                  <FeaturedBadgeLinks hidden />
+                </div>
+              </div>
             </div>
           </div>
         </div>
