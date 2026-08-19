@@ -2,7 +2,7 @@ export const canonicalOrigin = "https://www.stowlink.app";
 export const siteName = "StowLink";
 export const siteMotto = "Your links, neatly stowed.";
 export const publisherName = "Forgelyte";
-export const ogImagePath = "/og-image.png";
+export const ogImagePath = "/og.png";
 export const ogImageWidth = 1200;
 export const ogImageHeight = 630;
 
