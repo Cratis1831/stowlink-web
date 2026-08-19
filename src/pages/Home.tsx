@@ -49,24 +49,28 @@ const details = [
 
 const screenshots: {
   src: string;
+  srcSet: string;
   alt: string;
   title: string;
   copy: ReactNode;
 }[] = [
   {
     src: "/stowlink-folders.webp",
+    srcSet: "/stowlink-folders-960.webp 960w, /stowlink-folders.webp 1920w",
     alt: "StowLink showing a SwiftUI folder, a saved Apple Developer link, a page preview, and notes",
     title: "Library, preview, and notes.",
     copy: "Open a folder, pick a saved page, and keep the preview and notes beside it.",
   },
   {
     src: "/stowlink-detail.webp",
+    srcSet: "/stowlink-detail-960.webp 960w, /stowlink-detail.webp 1920w",
     alt: "StowLink search for swift, with matching pages and videos in the library",
     title: "Find it without digging.",
     copy: "Search by title, URL, or domain and jump to matching pages and videos.",
   },
   {
     src: "/stowlink-search.webp",
+    srcSet: "/stowlink-search-960.webp 960w, /stowlink-search.webp 1920w",
     alt: "StowLink Spotlight Search overlay with recent links, folders, and keyboard shortcuts",
     title: "Spotlight Search from the keyboard.",
     copy: (
@@ -144,11 +148,13 @@ export default function Home() {
           aria-label="StowLink product demo preview"
         >
           <img
-            src="/stowlink-library.webp"
+            src="/stowlink-library-800.webp"
+            srcSet="/stowlink-library-800.webp 800w, /stowlink-library.webp 1600w"
+            sizes="(max-width: 900px) 92vw, 800px"
             alt="Preview frame for the StowLink product walkthrough"
             width="1600"
             height="1023"
-            fetchPriority="high"
+            loading="lazy"
             decoding="async"
             onAnimationEnd={() => setIsDemoPlaying(false)}
           />
@@ -190,6 +196,8 @@ export default function Home() {
                 </div>
                 <img
                   src={item.src}
+                  srcSet={item.srcSet}
+                  sizes="(max-width: 900px) 92vw, 860px"
                   alt={item.alt}
                   width="1920"
                   height="1277"

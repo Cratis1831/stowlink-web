@@ -35,7 +35,7 @@ export default function Layout() {
       <header className="site-header">
         <div className="header-inner">
           <NavLink to="/" className="brand" aria-label={`${site.name} home`}>
-            <img src="/app-icon.png" width="34" height="34" alt="" />
+            <img src="/app-icon-128.webp" width="34" height="34" alt="" />
             <span>{site.name}</span>
           </NavLink>
           <nav className="primary-nav" aria-label="Main navigation">
@@ -61,7 +61,7 @@ export default function Layout() {
       <footer className="site-footer">
         <div className="footer-inner">
           <div className="footer-brand">
-            <img src="/app-icon.png" width="30" height="30" alt="" />
+            <img src="/app-icon-128.webp" width="30" height="30" alt="" />
             <div>
               <strong>{site.name}</strong>
               <span>{site.motto}</span>
