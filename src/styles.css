@@ -480,6 +480,11 @@
   line-height: 1.65;
 }
 
+.screenshot-copy .key-combination {
+  vertical-align: middle;
+  margin-inline: 2px;
+}
+
 .feature-section {
   padding: 84px 0 88px;
   border-top: 1px solid var(--border);

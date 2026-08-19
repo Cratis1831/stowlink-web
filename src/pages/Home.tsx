@@ -9,7 +9,7 @@ import {
   Play,
   Search,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -47,7 +47,12 @@ const details = [
   "One license for one Mac",
 ];
 
-const screenshots = [
+const screenshots: {
+  src: string;
+  alt: string;
+  title: string;
+  copy: ReactNode;
+}[] = [
   {
     src: "/stowlink-folders.webp",
     alt: "StowLink showing a SwiftUI folder, a saved Apple Developer link, a page preview, and notes",
@@ -59,6 +64,26 @@ const screenshots = [
     alt: "StowLink search for swift, with matching pages and videos in the library",
     title: "Find it without digging.",
     copy: "Search by title, URL, or domain and jump to matching pages and videos.",
+  },
+  {
+    src: "/stowlink-search.webp",
+    alt: "StowLink Spotlight Search overlay with recent links, folders, and keyboard shortcuts",
+    title: "Spotlight Search from the keyboard.",
+    copy: (
+      <>
+        Press{" "}
+        <KbdGroup className="key-combination" aria-label="Command K">
+          <Kbd className="h-8 min-w-8 px-2 text-sm" aria-hidden="true">
+            ⌘
+          </Kbd>
+          <span aria-hidden="true">+</span>
+          <Kbd className="h-8 min-w-8 px-2 text-sm" aria-hidden="true">
+            K
+          </Kbd>
+        </KbdGroup>{" "}
+        to jump to recent links, folders, and settings.
+      </>
+    ),
   },
 ];
 
