@@ -7,6 +7,7 @@ import {
   ogImagePath,
   ogImageWidth,
   pageForPath,
+  siteMotto,
   siteName,
   type PageSeo,
 } from "../seo";
@@ -39,7 +40,7 @@ function applyPageSeo(page: PageSeo) {
   setMeta("property", "og:description", page.description);
   setMeta("property", "og:url", url);
   setMeta("property", "og:image", image);
-  setMeta("property", "og:image:alt", `${siteName} for macOS`);
+  setMeta("property", "og:image:alt", `${siteName} — ${siteMotto}`);
   setMeta("property", "og:image:width", String(ogImageWidth));
   setMeta("property", "og:image:height", String(ogImageHeight));
   setMeta("property", "og:image:type", "image/png");
@@ -47,7 +48,7 @@ function applyPageSeo(page: PageSeo) {
   setMeta("name", "twitter:title", page.title);
   setMeta("name", "twitter:description", page.description);
   setMeta("name", "twitter:image", image);
-  setMeta("name", "twitter:image:alt", `${siteName} for macOS`);
+  setMeta("name", "twitter:image:alt", `${siteName} — ${siteMotto}`);
 
   let script = document.getElementById("json-ld");
   if (!script) {

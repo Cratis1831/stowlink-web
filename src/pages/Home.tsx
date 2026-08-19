@@ -55,21 +55,24 @@ const screenshots: {
 }[] = [
   {
     src: "/stowlink-folders.webp",
-    srcSet: "/stowlink-folders-640.webp 640w, /stowlink-folders-960.webp 960w, /stowlink-folders.webp 1920w",
+    srcSet:
+      "/stowlink-folders-640.webp 640w, /stowlink-folders-720.webp 720w, /stowlink-folders-960.webp 960w, /stowlink-folders.webp 1920w",
     alt: "StowLink showing a SwiftUI folder, a saved Apple Developer link, a page preview, and notes",
     title: "Library, preview, and notes.",
     copy: "Open a folder, pick a saved page, and keep the preview and notes beside it.",
   },
   {
     src: "/stowlink-detail.webp",
-    srcSet: "/stowlink-detail-640.webp 640w, /stowlink-detail-960.webp 960w, /stowlink-detail.webp 1920w",
+    srcSet:
+      "/stowlink-detail-640.webp 640w, /stowlink-detail-720.webp 720w, /stowlink-detail-960.webp 960w, /stowlink-detail.webp 1920w",
     alt: "StowLink search for swift, with matching pages and videos in the library",
     title: "Find it without digging.",
     copy: "Search by title, URL, or domain and jump to matching pages and videos.",
   },
   {
     src: "/stowlink-search.webp",
-    srcSet: "/stowlink-search-640.webp 640w, /stowlink-search-960.webp 960w, /stowlink-search.webp 1920w",
+    srcSet:
+      "/stowlink-search-640.webp 640w, /stowlink-search-720.webp 720w, /stowlink-search-960.webp 960w, /stowlink-search.webp 1920w",
     alt: "StowLink Spotlight Search overlay with recent links, folders, and keyboard shortcuts",
     title: "Spotlight Search from the keyboard.",
     copy: (
@@ -175,6 +178,12 @@ export default function Home() {
             }}
           >
             <source src="/stowlink-demo.mp4" type="video/mp4" />
+            <track
+              kind="captions"
+              src="/stowlink-demo-captions.vtt"
+              srcLang="en"
+              label="English"
+            />
             StowLink product demo
           </video>
           {isDemoPlaying ? null : (

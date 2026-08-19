@@ -114,7 +114,7 @@ export const notFoundPage: PageSeo = {
 
 const sitemapImages: Record<string, { loc: string; title: string }[]> = {
   "/": [
-    { loc: ogImagePath, title: "StowLink for macOS" },
+    { loc: ogImagePath, title: "StowLink — Your links, neatly stowed." },
     { loc: "/stowlink-library.webp", title: "StowLink library, preview, and notes" },
     { loc: "/stowlink-folders.webp", title: "StowLink folders and saved links" },
     { loc: "/stowlink-detail.webp", title: "StowLink search results" },
@@ -320,7 +320,7 @@ export function seoHeadHtml(page: PageSeo): string {
     <meta property="og:description" content="${escapeAttr(page.description)}" />
     <meta property="og:url" content="${escapeAttr(url)}" />
     <meta property="og:image" content="${escapeAttr(image)}" />
-    <meta property="og:image:alt" content="${escapeAttr(`${siteName} for macOS`)}" />
+    <meta property="og:image:alt" content="${escapeAttr(`${siteName} — ${siteMotto}`)}" />
     <meta property="og:image:width" content="${ogImageWidth}" />
     <meta property="og:image:height" content="${ogImageHeight}" />
     <meta property="og:image:type" content="image/png" />
@@ -328,7 +328,7 @@ export function seoHeadHtml(page: PageSeo): string {
     <meta name="twitter:title" content="${escapeAttr(page.title)}" />
     <meta name="twitter:description" content="${escapeAttr(page.description)}" />
     <meta name="twitter:image" content="${escapeAttr(image)}" />
-    <meta name="twitter:image:alt" content="${escapeAttr(`${siteName} for macOS`)}" />
+    <meta name="twitter:image:alt" content="${escapeAttr(`${siteName} — ${siteMotto}`)}" />
     <script id="json-ld" type="application/ld+json">${jsonLd}</script>`;
 }
 

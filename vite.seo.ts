@@ -16,7 +16,7 @@ export function stowlinkSeo(): Plugin {
       async handler() {
         const dist = path.resolve("dist");
         const indexPath = path.join(dist, "index.html");
-        const built = fs.readFileSync(indexPath, "utf8");
+        const built = withInlinedCss(fs.readFileSync(indexPath, "utf8"), dist);
 
         const server = await createServer({
           configFile: false,
@@ -59,6 +59,19 @@ export function stowlinkSeo(): Plugin {
       },
     },
   };
+}
+
+function withInlinedCss(html: string, dist: string): string {
+  return html.replace(/<link\b[^>]*\brel="stylesheet"[^>]*>/gi, (tag) => {
+    const href = tag.match(/\bhref="([^"]+)"/i)?.[1];
+    if (!href || !href.startsWith("/assets/") || !href.endsWith(".css")) {
+      return tag;
+    }
+
+    const cssPath = path.join(dist, href.slice(1));
+    const css = fs.readFileSync(cssPath, "utf8").replace(/<\/style>/gi, "<\\/style>");
+    return `<style>${css}</style>`;
+  });
 }
 
 function withSeoHead(html: string, page: PageSeo): string {
