@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Download from "./pages/Download";
+import Features from "./pages/Features";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Pricing from "./pages/Pricing";
@@ -16,6 +17,7 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/features" element={<Features />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/pricing" element={<Pricing />} />

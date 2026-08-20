@@ -7,6 +7,7 @@ import Seo from "@/components/Seo";
 import { site } from "../site";
 
 const nav = [
+  ["/features", "Features"],
   ["/blog", "Blog"],
   ["/pricing", "Pricing"],
   ["/support", "Support"],
@@ -111,7 +112,6 @@ export default function Layout() {
             <NavLink to="/" end>
               Product
             </NavLink>
-            <a href="/#features">Features</a>
             {nav.map(([to, label]) => (
               <NavLink key={to} to={to}>
                 {label}

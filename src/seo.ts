@@ -25,6 +25,97 @@ export const supportFaqs = [
     answer:
       "If this Mac still has its Keychain, StowLink reuses the existing activation. If the disk was erased, deactivate the old instance first, then activate again.",
   },
+  {
+    id: "account",
+    question: "Does StowLink require an account?",
+    answer:
+      "No. StowLink does not require a StowLink account. Optional iCloud sync uses your Apple Account.",
+  },
+  {
+    id: "license-count",
+    question: "How many Macs can I use?",
+    answer:
+      "One license works on up to two Macs at a time. Deactivate a Mac to free that slot.",
+  },
+  {
+    id: "where-data",
+    question: "Where does StowLink store my links?",
+    answer:
+      "Links, folders, notes, and previews stay on your Mac unless you turn on iCloud sync in Settings. StowLink does not run a separate cloud database for your library.",
+  },
+  {
+    id: "icloud",
+    question: "How do I enable iCloud sync?",
+    answer:
+      "Turn on iCloud sync in Settings. Library data then uses your Apple Account and Apple's CloudKit.",
+  },
+  {
+    id: "save-shortcut",
+    question: "How do I save a link with the global shortcut?",
+    answer:
+      "Copy a URL, then press Command-V while StowLink is open. If the window is closed, hold Command and double-tap Shift.",
+  },
+  {
+    id: "spotlight",
+    question: "How do I use Spotlight Search?",
+    answer:
+      "Press Command-K in StowLink to jump to recent links, folders, and settings.",
+  },
+  {
+    id: "updates",
+    question: "How do updates work?",
+    answer:
+      "StowLink checks a public appcast for a newer notarized build. Sparkle updates we publish are included with your license.",
+  },
+] as const;
+
+export const pricingFaqs = [
+  {
+    id: "subscription",
+    question: "Is StowLink a subscription?",
+    answer: "No. StowLink is a one-time purchase. There is no subscription.",
+  },
+  {
+    id: "how-many-macs",
+    question: "How many Macs can I use?",
+    answer:
+      "One license works on up to two Macs at a time. Deactivate a Mac to move that slot.",
+  },
+  {
+    id: "need-account",
+    question: "Do I need an account?",
+    answer:
+      "No StowLink account is required. Optional iCloud sync uses your Apple Account.",
+  },
+  {
+    id: "icloud-sync",
+    question: "Does StowLink sync with iCloud?",
+    answer:
+      "Yes, if you turn it on in Settings. Your library stays on your Mac until you enable iCloud.",
+  },
+  {
+    id: "data-stored",
+    question: "Where is my data stored?",
+    answer:
+      "On your Mac by default. If iCloud sync is on, library data uses your Apple Account. We do not operate a separate cloud database for saved links.",
+  },
+  {
+    id: "macos-version",
+    question: "What versions of macOS are supported?",
+    answer: "StowLink requires macOS 14 or later.",
+  },
+  {
+    id: "move-license",
+    question: "Can I move my license to a new Mac?",
+    answer:
+      "Yes. Deactivate the old Mac in Settings → License, then activate the new one with the same key.",
+  },
+  {
+    id: "updates-included",
+    question: "How do updates work?",
+    answer:
+      "StowLink checks for notarized Sparkle updates. Updates we publish are included with the license.",
+  },
 ] as const;
 
 export type PageSeo = {
@@ -54,9 +145,9 @@ export type SitemapUrl = {
 export const pages: PageSeo[] = [
   {
     path: "/",
-    title: "StowLink — Native macOS Link Library",
+    title: "StowLink — Bookmark Manager & Link Organizer for Mac",
     description:
-      "Save, organize, and find every link in one native Mac app. Nested folders, rich previews, Spotlight search, and a one-time purchase.",
+      "Save, organize, and find your links with StowLink, a native bookmark manager for Mac. Nested folders, notes, previews, global shortcuts, and optional iCloud sync.",
     robots: "index, follow",
     inSitemap: true,
     ogType: "website",
@@ -75,6 +166,15 @@ export const pages: PageSeo[] = [
     title: "Download StowLink for macOS",
     description:
       "Download StowLink, a native Mac app for saving and organizing links. Requires macOS 14 or later. One-time purchase, no account required.",
+    robots: "index, follow",
+    inSitemap: true,
+    ogType: "website",
+  },
+  {
+    path: "/features",
+    title: "Features — StowLink Bookmark Manager for Mac",
+    description:
+      "A native bookmark manager for Mac. Save links with a global shortcut, organize them in nested folders, search your library, and keep notes and previews nearby.",
     robots: "index, follow",
     inSitemap: true,
     ogType: "website",
@@ -171,6 +271,8 @@ export function breadcrumbName(path: string): string {
       return "Pricing";
     case "/download":
       return "Download";
+    case "/features":
+      return "Features";
     case "/support":
       return "Support";
     case "/blog":
@@ -184,6 +286,25 @@ export function breadcrumbName(path: string): string {
     default:
       return "Not found";
   }
+}
+
+function faqJsonLd(
+  path: string,
+  faqs: readonly { question: string; answer: string }[],
+): Record<string, unknown> {
+  return {
+    "@type": "FAQPage",
+    "@id": `${canonicalOrigin}${path}#faq`,
+    url: absoluteUrl(path),
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
 }
 
 export function jsonLdFor(page: PageSeo): unknown {
@@ -317,19 +438,11 @@ export function jsonLdFor(page: PageSeo): unknown {
   }
 
   if (page.path === "/support") {
-    graph.push({
-      "@type": "FAQPage",
-      "@id": `${canonicalOrigin}/support#faq`,
-      url: `${canonicalOrigin}/support`,
-      mainEntity: supportFaqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: faq.answer,
-        },
-      })),
-    });
+    graph.push(faqJsonLd("/support", supportFaqs));
+  }
+
+  if (page.path === "/pricing") {
+    graph.push(faqJsonLd("/pricing", pricingFaqs));
   }
 
   return {

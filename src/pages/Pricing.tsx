@@ -1,7 +1,14 @@
 import { FlagsProvider } from "@databuddy/sdk/react";
 import { Check } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import PurchaseButton from "@/components/PurchaseButton";
+import { pricingFaqs } from "../seo";
 import { site } from "../site";
 
 const includedFeatures = [
@@ -55,6 +62,18 @@ export default function Pricing() {
           Already licensed? <Link to="/download">Download StowLink for macOS</Link>
         </p>
       </article>
+
+      <h2 className="pricing-faq-title">Questions</h2>
+      <Accordion className="support-accordion pricing-faq">
+        {pricingFaqs.map((faq) => (
+          <AccordionItem key={faq.id} value={faq.id}>
+            <AccordionTrigger>{faq.question}</AccordionTrigger>
+            <AccordionContent>
+              <p>{faq.answer}</p>
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
     </section>
     </FlagsProvider>
   );

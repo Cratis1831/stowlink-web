@@ -118,7 +118,8 @@ export default function Home() {
           </Badge>
           <h1 id="hero-title">{site.motto}</h1>
           <p className="hero-lede">
-            Save, organize, and find every link in one native Mac app.
+            A native bookmark manager for Mac. Save, organize, and find the links you want to
+            keep.
           </p>
           <div className="hero-actions">
             <Link
@@ -302,7 +303,13 @@ export default function Home() {
             <p className="section-kicker">The essentials</p>
             <h2 id="features-title">Save it once. Find it fast.</h2>
           </div>
-          <p>Everything needed to keep links useful.</p>
+          <p>
+            Everything needed to keep links useful.{" "}
+            <Link to="/features" className="blog-teaser-link">
+              See all features
+              <ArrowRight aria-hidden="true" />
+            </Link>
+          </p>
         </div>
         <div className="feature-grid">
           {features.map(({ icon: Icon, title, copy }) => (
@@ -317,6 +324,63 @@ export default function Home() {
             </Card>
           ))}
         </div>
+      </section>
+
+      <section className="usecase-section" aria-labelledby="usecase-title">
+        <div className="section-heading">
+          <div>
+            <p className="section-kicker">Who it is for</p>
+            <h2 id="usecase-title">Built for people who save everything</h2>
+          </div>
+          <p>If your browser bookmarks are a holding pen, StowLink is the library.</p>
+        </div>
+        <div className="usecase-grid">
+          <article className="usecase-card">
+            <h3>Developers</h3>
+            <p>Documentation, GitHub repositories, APIs, Stack Overflow answers, and tools you will need again.</p>
+          </article>
+          <article className="usecase-card">
+            <h3>Designers</h3>
+            <p>Inspiration, fonts, icons, UI references, and assets you do not want buried in a bookmark bar.</p>
+          </article>
+          <article className="usecase-card">
+            <h3>Researchers</h3>
+            <p>Articles, papers, sources, and notes on why a page mattered in the first place.</p>
+          </article>
+          <article className="usecase-card">
+            <h3>Everyday collections</h3>
+            <p>Recipes, products, videos, travel ideas, and anything you mean to come back to later.</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="privacy-section" aria-labelledby="privacy-title">
+        <p className="section-kicker">Local first</p>
+        <h2 id="privacy-title">Your library stays yours</h2>
+        <p>
+          StowLink keeps your library on your Mac by default. Turn on iCloud when you want the same
+          saved links on your other Macs, without creating a StowLink account.
+        </p>
+        <ul className="privacy-points">
+          <li>
+            <Check aria-hidden="true" />
+            No StowLink account required
+          </li>
+          <li>
+            <Check aria-hidden="true" />
+            Local storage by default
+          </li>
+          <li>
+            <Check aria-hidden="true" />
+            Optional iCloud sync
+          </li>
+        </ul>
+        <p>
+          <Link to="/privacy" className="blog-teaser-link">
+            Privacy policy
+            <ArrowRight aria-hidden="true" />
+          </Link>
+        </p>
       </section>
 
       {latestPosts.length > 0 ? (

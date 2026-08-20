@@ -180,6 +180,6 @@ But if you're constantly collecting articles, videos, documentation, tools, reso
 
 That's what StowLink is built for.
 
-**Your links, neatly stowed.**
+If you want a native bookmark manager for Mac, [see how StowLink works](/features). Pricing is a [one-time purchase](/pricing).
 
-[Learn more about StowLink](/)
+**Your links, neatly stowed.**
