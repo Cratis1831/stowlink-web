@@ -156,7 +156,7 @@ export const pages: PageSeo[] = [
     path: "/pricing",
     title: "Pricing — StowLink for macOS",
     description:
-      "StowLink is a one-time $39 USD license for two Macs. No subscription. Nested folders, search, previews, notes, and optional iCloud sync.",
+      "StowLink is a one-time $29 USD license for two Macs. No subscription. Nested folders, search, previews, notes, and optional iCloud sync.",
     robots: "index, follow",
     inSitemap: true,
     ogType: "website",
@@ -343,7 +343,7 @@ export function jsonLdFor(page: PageSeo): unknown {
       publisher: { "@id": orgId },
       offers: {
         "@type": "Offer",
-        price: "39.00",
+        price: "29.00",
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
         url: `${canonicalOrigin}/pricing`,
